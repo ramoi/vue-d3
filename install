@@ -1,0 +1,7 @@
+vue init webpack-simple chart
+yarn
+yarn add vue-router --dev
+yarn add d3 --dev
+소스 복사
+webpack.cofig.js 수정
+    entry: './src/main.js', -> entry: './src/mainChart.js',
