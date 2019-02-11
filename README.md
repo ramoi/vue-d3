@@ -56,7 +56,7 @@ src/components/sample 디렉토리에서 샘플 소스를 확인할 수 있습�
    
    데이타는 아래와 같습니다.
    
-    const dataset = [
+    var dataset = [
       {year:'2016', language: 'Rust', value: 78.9, },
       {year:'2016', language: 'Kotlin', value: 75.1, },
       {year:'2016', language: 'Python', value: 68.0, },
@@ -85,10 +85,11 @@ src/components/sample 디렉토리에서 샘플 소스를 확인할 수 있습�
     
 3. 원챠트
    원챠트는 단순합니다.
+   
    <d3-circle id='c' ref='dept' title='통화량' :width=300 :height=300  :legend='{isShow: false}' :conf='{name:"name",value:"value",animate:true }'></d3-circle>
    
-   [{ name:'Aaaaaaaaaaaaaaaaaaaaaaaaa1', value: 10}, {name : 'Aaaaaaa2', value: 40}, {name : 'Aaaaaaaaaaaaaaaaaaa3', value: 20}, {name : 'Aaaaaaaaaaaaaaaaaaa4', value: 100} ]
+   var dataset = [{ name:'Aaaaaaaaaaaaaaaaaaaaaaaaa1', value: 10}, {name : 'Aaaaaaa2', value: 40}, {name : 'Aaaaaaaaaaaaaaaaaaa3', value: 20}, {name : 'Aaaaaaaaaaaaaaaaaaa4', value: 100} ]
    
-   this.$refs.c.setSource( arr[idx] )
+   this.$refs.c.setSource( dataset )
    
    
