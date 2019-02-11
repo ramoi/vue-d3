@@ -36,7 +36,7 @@
 				if( !this.svgElement ) {
 					let svg = !!this.svg ? d3.select('#' + this.svg) : d3.select(this.$el).append('svg').attr('width', this.width).attr('height', this.height);
 					console.log(`svg clear.....id:: ${this.id}..,`, svg.empty());
-					this.svgElement = svg.append('g').attr('id', this.id)
+					this.svgElement = svg.append('g').attr('id', this.id).attr('class', 'chart')
 				} else {
 					this.svgElement.select(this.id).selectAll('*').remove();
 				}
@@ -94,7 +94,7 @@
 						.append('g')
 
 						pg.append('path')
-						.attr('class', 'lineChart')
+						.attr('class', 'line')
 						.style('stroke', d => $this.configure.getColor( getSeriesName(d) ) )
 						.attr('d', d => { 
 							return d3.line()
@@ -183,13 +183,13 @@
 					//var margin = {left: 20, top: 10, right: 10, bottom: 20};
 					var width  = $this.width - $this.configure.margin.left - $this.configure.margin.right;
 					var height = $this.height - $this.configure.margin.top - $this.configure.margin.bottom;
-					var svgG = $this.svgElement.append('g')
+					var svgG = $this.svgElement.append('g').attr('class', 'lineGroup')
 					.attr('transform', 'translate(' + $this.configure.margin.left + ',' + $this.configure.margin.top + ')');
 
 					var xScale = d3.scalePoint()//scaleBand() scaleOrdinal
 				    //.domain(d3.extent(this.source[0], d => d[$this.configure.x]))
 				    .domain( $this.lgc.xDomain() )
-				    .rangeRound([0, width]);
+						.range([0, width])
 
 				    var yScale = d3.scaleLinear()
 				    .domain( $this.lgc.range() )
@@ -199,15 +199,15 @@
 					svgG.append('g')
 					.attr('class', 'grid')
 					.attr('transform', 'translate(0,' + height + ')')
-					.call(d3.axisBottom(xScale).ticks( 6 )
-						.tickSize(-height)
+					.call(d3.axisBottom(xScale)//.ticks( 6 )
+						//.tickSize(-height)
 					 );
 
 					svgG.append('g')
 					.attr('class', 'grid')
 					.call(d3.axisLeft(yScale)
-						.ticks(5)
-						.tickSize(-width)
+						//.ticks(5)
+						//.tickSize(-width)
 						);
 
 					$this.lgc.setSeries( svgG, xScale, yScale )
@@ -240,12 +240,12 @@
     stroke: lightgrey;
     stroke-opacity: 0.7;
 }*/
-.lineChart {
+.chart .line {
     fill: none;
     stroke: steelblue;
     stroke-width: 1.5px;
 }
-.lineChart:hover {
+.chart .line:hover {
     stroke: black;
     stroke-width: 3px;
 }

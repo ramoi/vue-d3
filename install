@@ -2,6 +2,16 @@ vue init webpack-simple chart
 yarn
 yarn add vue-router --dev
 yarn add d3 --dev
+
 소스 복사
 webpack.cofig.js 수정
-    entry: './src/main.js', -> entry: './src/mainChart.js',
+entry: './src/main.js', -> entry: './src/mainChart.js',
+yarn run dev
+
+
+
+#메뉴 만들기 참고 사이트
+https://medium.com/@disjfa/creating-navigation-using-vue-router-59d0b12ab75f
+https://medium.com/@BjornKrols/integrating-and-customising-bootstrap-4-in-vue-js-cbc29ba7688e
+
+https://medium.com/@disjfa/creating-navigation-using-vue-router-59d0b12ab75f

@@ -36,7 +36,7 @@
 				if( !this.svgElement ) {
 					let svg = !!this.svg ? d3.select('#' + this.svg) : d3.select(this.$el).append('svg').attr('width', this.width).attr('height', this.height);
 					console.log(`svg clear.....id:: ${this.id}..,`, svg.empty());
-					this.svgElement = svg.append('g').attr('id', this.id)
+					this.svgElement = svg.append('g').attr('id', this.id).attr('class', 'chart')
 				} else {
 					this.svgElement.select(this.id).selectAll('*').remove();
 				}
@@ -50,7 +50,6 @@
 			}
 		},
 		created() {
-			console.log( 'line chart created.....id::', this.id);
 			eb.$on('setData', (source) => {
 				this.setSource( source );
 			});
@@ -80,7 +79,7 @@
 				this.svgElement
 				.attr('transform', `translate(${$this.configure.margin.left}, 0)`);
 
-				const chart = $this.svgElement.append('g')
+				const chart = $this.svgElement.append('g').attr('class', 'barGroup')
 				//.attr('transform', `translate(${$this.configure.margin.left}, ${$this.configure.margin.top})`);
 
 				const xScale = d3.scaleBand()
@@ -226,11 +225,11 @@
   font-family: 'Open Sans', sans-serif;
 }*/
 
-div#layout {
+.bar .barGroup div#layout {
   text-align: center;
 }
 
-div#container {
+.bar .barGroup div#container {
   width: 1000px;
   height: 600px;
   margin: auto;
@@ -251,53 +250,49 @@ div#container {
   fill: #fff;
 }*/
 
-path {
+.bar .barGroup path {
   stroke: gray;
 }
 
-line {
+.bar .barGroup line {
   stroke: gray;
 }
 
-line#limit {
+.bar .barGroup line#limit {
   stroke: #FED966;
   stroke-width: 3;
   stroke-dasharray: 3 6;
 }
 
-.grid path {
+.bar .barGroup .grid path {
   stroke-width: 0;
 }
 
-.grid .tick line {
+.bar .barGroup .grid .tick line {
   stroke: #9FAAAE;
   stroke-opacity: 0.3;
 }
 
-text.divergence {
+.bar .barGroup text.divergence {
   font-size: 14px;
   fill: #2F4A6D;
 }
 
-text.value {
+.bar .barGroup text.value {
   font-size: 14px;
 }
 
-text.title {
+.bar .barGroup text.title {
   font-size: 22px;
   font-weight: 600;
 }
 
-text.label {
+.bar .barGroup text.label {
   font-size: 14px;
   font-weight: 400;
 }
 
-text.source {
+.bar .barGroup text.source {
   font-size: 10px;
 }
 </style>
-
-
-
-

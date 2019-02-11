@@ -3,12 +3,13 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-import App from './App'
-import Stock from './components/Stock'
-import Currency from './components/Currency'
-import Debt from './components/Debt'
-import House from './components/House'
-import Sample from './components/SampleChart'
+import line from './components/sample/Line'
+import bar from './components/sample/Bar'
+import circle from './components/sample/Circle'
+import examp from './components/sample/Examples'
+import 'bootstrap'
+
+//import 'bootstrap/dist/css/bootstrap.min.css'
 
 const router = new VueRouter({
   mode: 'history',
@@ -16,12 +17,10 @@ const router = new VueRouter({
   routes: [
     // { path: '/', component: App },
     // { path: '/stock', component: Stock },
-    { path: '/', component: Stock },
-    { path: '/line', component: Currency },
-    { path: '/bar', component: Debt },
-    { path: '/circle', component: House },
-    { path: '/complex', component: Sample },
-    { path: '/sample', component: Sample }
+    { path: '/', component: examp },
+    { path: '/line', component: line },
+    { path: '/bar', component: bar },
+    { path: '/circle', component: circle }
   ]
 })
 
@@ -29,17 +28,25 @@ const router = new VueRouter({
 new Vue({
   router,
   template: `
-    <div id="app">
-      <ul>
-        <li><a href='/'>시작</li>
-        <li><router-link to="/line">라인</router-link></li>
-        <li><router-link to="/bar">바</router-link></li>
-        <li><router-link to="/circle">원</router-link></li>
-        <li><router-link to="/complex">복합</router-link></li>
-        <li><router-link to="/sample">Sample</router-link></li>
-      </ul>
-      <router-view></router-view>
+  <div>
+    <nav class="navbar navbar-toggleable-md navbar-light bg-success navbar-inverse">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="/">시작</a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><router-link to="/line" class="nav-link" active-class="active">라인</router-link></li>
+                <li class="nav-item"><router-link to="/bar"  class="nav-link" active-class="active">바</router-link></li>
+                <li class="nav-item"><router-link to="/circle"  class="nav-link" active-class="active">원</router-link></li>
+            </ul>
+        </div>        
+    </nav>    
+    <div class="container pt-3 pb-3">
+      <router-view></router-view> 
     </div>
+  </div>
   `
 //        <li><router-link to="/">Main</router-link></li>
 }).$mount('#app')
