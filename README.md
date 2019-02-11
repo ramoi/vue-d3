@@ -35,10 +35,12 @@ src/components/sample 디렉토리에서 샘플 소스를 확인할 수 있습�
         this.$refs.p.setSource( dataset )
         
         
-   1.2 두번째 형식입니다. 위와는 다르게 conf 설정의 y값이 배열입니다.
-       태그 : <d3-line id='houseProgress' ref='houseProgress' title='추이' :width=700 :height=320 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["COUNTRY","CAPATIAL", "SEOUL", "SOUTH", "NORTH" ] }'></d3-line>
+   1.2 두번째 형식입니다. 위와는 다르게 conf 설정의 y값이 배열입니다. 
        
-       데이타 : 
+       <d3-line id='houseProgress' ref='houseProgress' title='추이' :width=700 :height=320 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["COUNTRY","CAPATIAL", "SEOUL", "SOUTH", "NORTH" ] }'></d3-line>
+       
+       데이타
+       
        var dataset2 = [{'DATE': 201802, 'COUNTRY': 0.2, 'CAPATIAL': 0.5, 'SEOUL': 0.9, 'SOUTH': 1.2, 'NORTH': 0.7}, {'DATE': 201803, 'COUNTRY': 0.1, 'CAPATIAL': 0.3, 'SEOUL': 0.6, 'SOUTH': 0.6, 'NORTH': 0.6}, {'DATE': 201804, 'COUNTRY': 0.1, 'CAPATIAL': 0.2, 'SEOUL': 0.3, 'SOUTH': 0.3, 'NORTH': 0.3}, {'DATE': 201805, 'COUNTRY': 0.0, 'CAPATIAL': 0.1, 'SEOUL': 0.2, 'SOUTH': 0.2, 'NORTH': 0.3}, {'DATE': 201806, 'COUNTRY': 0.0, 'CAPATIAL': 0.1, 'SEOUL': 0.2, 'SOUTH': 0.1, 'NORTH': 0.4}, {'DATE': 201807, 'COUNTRY': 0.0, 'CAPATIAL': 0.1, 'SEOUL': 0.3, 'SOUTH': 0.3, 'NORTH': 0.4}, {'DATE': 201808, 'COUNTRY': 0.0, 'CAPATIAL': 0.2, 'SEOUL': 0.6, 'SOUTH': 0.6, 'NORTH': 0.6}, {'DATE': 201809, 'COUNTRY': 0.3, 'CAPATIAL': 0.7, 'SEOUL': 1.3, 'SOUTH': 1.5, 'NORTH': 1.0}, {'DATE': 201810, 'COUNTRY': 0.2, 'CAPATIAL': 0.4, 'SEOUL': 0.5, 'SOUTH': 0.5, 'NORTH': 0.6}, {'DATE': 201811, 'COUNTRY': 0.1, 'CAPATIAL': 0.3, 'SEOUL': 0.2, 'SOUTH': 0.1, 'NORTH': 0.3}, {'DATE': 201812, 'COUNTRY': 0.0, 'CAPATIAL': 0.1, 'SEOUL': 0.0, 'SOUTH': -0.1, 'NORTH': 0.2}, {'DATE': 201901, 'COUNTRY': -0.1, 'CAPATIAL': -0.1, 'SEOUL': -0.2, 'SOUTH': -0.3, 'NORTH': -0.1}] 
        
        호출은 아래와 같습니다.
@@ -53,6 +55,7 @@ src/components/sample 디렉토리에서 샘플 소스를 확인할 수 있습�
     <d3-bar id='bar2' ref='bar2' title='Most loved programming languages' :width=1000 :height=600 :conf='{x:"language", y:"value"}'></d3-bar>
    
    데이타는 아래와 같습니다.
+   
     const dataset = [
       {year:'2016', language: 'Rust', value: 78.9, },
       {year:'2016', language: 'Kotlin', value: 75.1, },
