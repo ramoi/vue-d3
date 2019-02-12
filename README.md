@@ -6,18 +6,18 @@ vuejs를 공부하면서 어떤 주제로 이것을 활용할까 생각을 해�
 모두 vuejs 보다는 d3에 문제되는 부분이라 공부를 하면서 그때, 그때 수정하려 하고 있습니다.<br>
 <br>
 
-사용법 h1
+#사용법 
 
 src/components/d3 디렉토리에서 관련 vue 소스를 확인할 수 있습니다<br>
 Line 챠트의 경우 line.vue 이며, 바챠트의 경우는 bar.vue, 파이챠트는 circle.vue 입니다..<br>
 <br>
 src/components/sample 디렉토리에서 샘플 소스를 확인할 수 있습니다.<br>
 
-1. Line 챠트 h2
+##1. Line 챠트 
    데이타  형식이 두가지 입니다. 
    아래에서 확인 할 수 있습니다.
    
-   1.1 첫번째 형식입니다. h3
+###   1.1 첫번째 형식입니다.
        태그: 중요한 것은 conf 설정의 "y"값입니다. 문자열로 받고 있습니다.
 
        <pre><code>
@@ -52,7 +52,7 @@ src/components/sample 디렉토리에서 샘플 소스를 확인할 수 있습�
    
    위 내용은 sample 디렉토리의 sample/Line.vue 에서 확인할 수 있습니다.
 
-2. 바챠트 h2
+##2. 바챠트 
    바챠트는 우선, 데이타베이스 형식만 받았습니다. 아래 태그를 보면 차이를 느끼실 수 있을거예요..
    
    <pre><code>
@@ -90,7 +90,7 @@ src/components/sample 디렉토리에서 샘플 소스를 확인할 수 있습�
     
    위 내용은 sample 디렉토리의 sample/Bar.vue 에서 확인할 수 있습니다.
 
-3. 원챠트 h2
+##3. 원챠트 
    
    <pre><code>
     dataset1 = [
@@ -103,17 +103,20 @@ src/components/sample 디렉토리에서 샘플 소스를 확인할 수 있습�
    </code></pre>
    
 
-설치 h1
+#설치 
 
-1. 버젼 정보 h3
+##1. 버젼 정보 
+'''
 	vue@2.6.4
 	vue-router@3.0.2
 	d3@5.9.0
 	axios@0.18.0
 	webpack@3.12.0
-2. 설치 
+'''
+##2. 설치 
 	우선 node와 vue-cli가 설치되었다는 가정하에 진행하겠습니다. 
 
+'''
 	yarn global add @vue/cl
 
 	작업 디렉토리를 정한 후 아래 명령으로 vue workspace를 잡아줍니다.
@@ -127,13 +130,13 @@ src/components/sample 디렉토리에서 샘플 소스를 확인할 수 있습�
 	chart 디렉토리 밑으로 내려받습니다.
 	webpack.cofig.js를 수정합니다.
 		entry: './src/main.js', -> entry: './src/mainChart.js',
+'''
 
+#참고 사이트 
+##메뉴 만들기 참고 사이트 
+https://medium.com/@disjfa/creating-navigation-using-vue-router-59d0b12ab75f<br>
+https://medium.com/@BjornKrols/integrating-and-customising-bootstrap-4-in-vue-js-cbc29ba7688e<br>
 
-참고 사이트 h1
-메뉴 만들기 참고 사이트 h2
-https://medium.com/@disjfa/creating-navigation-using-vue-router-59d0b12ab75f
-https://medium.com/@BjornKrols/integrating-and-customising-bootstrap-4-in-vue-js-cbc29ba7688e
-
-d3 챠트 h2
-https://codelib.tistory.com/10
-https://blog.risingstack.com/d3-js-tutorial-bar-charts-with-javascript
+##d3 챠트 
+https://codelib.tistory.com/10<br>
+https://blog.risingstack.com/d3-js-tutorial-bar-charts-with-javascript<br>
