@@ -16,6 +16,7 @@
 		props : {
 			svg : { type : String },
 			id : { type : String, required : true},
+			source : undefined, 
 			title : { type : String}, 
 			width : { type : Number, required : true },
 			height: { type : Number, required : true },
@@ -29,9 +30,6 @@
 			yConf : { type : Object }
 		},
 		methods : {
-			setSource : function( source ) {
-				this.source = source;
-			},
 			clear() {
 				if( !this.svgElement ) {
 					let svg = !!this.svg ? d3.select('#' + this.svg) : d3.select(this.$el).append('svg').attr('width', this.width).attr('height', this.height);
@@ -44,7 +42,6 @@
 		},
 		data() {
 			return {
-				source : undefined, 
 				configure : undefined,
 				svgElement: undefined,
 				lgc : undefined
@@ -58,8 +55,6 @@
 
 			this.configure = chart.getLine(d3, this.conf);
 
-		},
-		mounted() {
 		},
 		watch : {
 			source : function(  ) {

@@ -1,7 +1,7 @@
  <template>
   <div>
-    <!-- <div><button @click='getData'>데이타 가져오기</button></div> -->
-    <d3-circle id='dept' ref='dept' title='통화량' :width=300 :height=300  :legend='{isShow: false}' :conf='{name:"name",value:"value",animate:true }'></d3-circle>
+    <div><button @click='getData'>데이타 가져오기</button></div>
+    <d3-circle id='dept' title='통화량' :width=300 :height=300  :source='dataset' :legend='{isShow: false}' :conf='{name:"name",value:"value",animate:true }'></d3-circle>
   </div>
 </template>
 
@@ -23,10 +23,9 @@ export default {
   },
 
   data () {
-      return { }
-  },
-  mounted() {
-    this.getData()
+      return { 
+        dataset : undefined
+      }
   },
   methods : {
     getData : function() {
@@ -45,7 +44,8 @@ export default {
         idx = idx + 1; 
         idx = idx > arr.length - 1 ? 0 : idx;
         console.log( arr[idx] );
-        this.$refs.dept.setSource( arr[idx] );
+        //this.$refs.dept.setSource( arr[idx] );
+        this.dataset = arr[idx]
       }
     }()
   }

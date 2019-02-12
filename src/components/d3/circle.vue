@@ -23,16 +23,11 @@
 			value : { type : String, default : 'value'},
 			legend : { type : Object, default : function() { return { isShow: true }; } },
 			onlyData : { type : Boolean, default : false },
+			source : undefined, 
 			conf : { type : Object }
-		},
-		methods : {
-			setSource : function( source ) {
-				this.source = source;
-			}
 		},
 		data() {
 			return {
-				source : undefined, 
 				configure : undefined
 			}
 		},

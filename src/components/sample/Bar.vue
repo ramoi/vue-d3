@@ -1,8 +1,8 @@
  <template>
   <div>
     <!-- <div><button @click='getData'>데이타 가져오기</button></div> -->
-    <d3-bar id='bar1' ref='bar1' title='Most loved programming languages' :width=1000 :height=600 :conf='{series:"language", x:"year", y:"value"}'></d3-bar>
-    <d3-bar id='bar2' ref='bar2' title='Most loved programming languages' :width=1000 :height=600 :conf='{x:"language", y:"value"}'></d3-bar>
+    <d3-bar id='bar1' title='Most loved programming languages' :source='barData1' :width=1000 :height=600 :conf='{series:"language", x:"year", y:"value"}'></d3-bar>
+    <d3-bar id='bar2' title='Most loved programming languages' :source='barData2' :width=1000 :height=600 :conf='{x:"language", y:"value"}'></d3-bar>
     <div>참고 사이트 : https://blog.risingstack.com/d3-js-tutorial-bar-charts-with-javascript/</div>
   </div>
 </template>
@@ -17,15 +17,12 @@ export default {
     'd3-bar' : bar,
   },
   data () {
-      return { }
+      return { 
+        barData1 : undefined
+       }
   },
   mounted() {
-    this.getData()
-  },
-  methods : {
-    getData : function() {
-
-    const dataset = [
+    this.barData1 = [
       {year:'2016', language: 'Rust', value: 78.9, },
       {year:'2016', language: 'Kotlin', value: 75.1, },
       {year:'2016', language: 'Python', value: 68.0, },
@@ -48,12 +45,13 @@ export default {
       {year:'2017', language: 'F#', value: 19.6, },
       {year:'2017', language: 'Clojure', value: 12.6, }
     ];
-
-      return function() {
-        this.$refs.bar1.setSource( dataset )
-        this.$refs.bar2.setSource( dataset.slice(10) )
+  },
+  computed : {
+    barData2 : function() {
+      if( this.barData1 ) {
+        return this.barData1.slice(10)
       }
-    }()
+    }
   }
 }
 </script>

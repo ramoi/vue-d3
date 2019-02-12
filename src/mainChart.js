@@ -7,7 +7,6 @@ import line from './components/sample/Line'
 import bar from './components/sample/Bar'
 import circle from './components/sample/Circle'
 import examp from './components/sample/Examples'
-import 'bootstrap'
 
 //import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -15,8 +14,6 @@ const router = new VueRouter({
   mode: 'history',
   base: __dirname,
   routes: [
-    // { path: '/', component: App },
-    // { path: '/stock', component: Stock },
     { path: '/', component: examp },
     { path: '/line', component: line },
     { path: '/bar', component: bar },

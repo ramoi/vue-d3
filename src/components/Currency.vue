@@ -2,7 +2,7 @@
 	<div>
 		<div><button @click='getData'>조회</button></div>
 		<!-- <d3-circle id='m2' ref='m2' title='통화량' :width=300 :height=300  :animate=true :legend='{isShow: false}' name="NAME" value="M2_INC_RATE"></d3-circle> -->
-		<d3-bar id='m2' ref='m2' title='M2 통화량 증가율 국제비교' :width=1000 :height=600 :conf='{x:"NAME", y:"M2_INC_RATE", xName : "국가", yName: "통화량 증가율(M2)"}'></d3-bar>
+		<d3-bar id='m2' :source='dataset' title='M2 통화량 증가율 국제비교' :width=1000 :height=600 :conf='{x:"NAME", y:"M2_INC_RATE", xName : "국가", yName: "통화량 증가율(M2)"}'></d3-bar>
 	</div>
 </template>
 
@@ -16,6 +16,11 @@
 			'd3-circle' : circle,
 			'd3-bar' : bar,
 		},
+		data() {
+			return {
+				dataset : undefined
+			}
+		},
 		methods : {
 			getData : function() {
 				var dataset = [ 
@@ -26,7 +31,7 @@
 				this.$http.get('/currency/m2')
 				.then((r) => {
 					console.log(r.data.result )
-					this.$refs.m2.setSource( r.data.result );
+					this.dataset = r.data.result
 				})
 			}
 		}
