@@ -1,6 +1,6 @@
 # vue-d3
 
-vuejs를 공부하면서 어떤 주제로 이것을 활용할까 생각을 해보다가 d3js를 선택했습니다. 그런데 작업을 하면서 가장 힘들었던 부분이 d3였습니다.<br>
+vuejs를 공부하면서 어떤 주제로 이것을 활용할까 생각을 해보다가 d3js를 선택했습니다. 그런데 작업을 하면서 가장 힘들었던 부분이 d3였습니다. 
 개발자로 살아오면서 가장 힘들게 느껴지는 부분이 html인데, 원하는데로 모양이 안나오니 삽질만 하게 되더군요.<br>
 생각해보면, 아직 미진한 부분이 많습니다. complex라든지, y축을 오른쪽에 설정하는 것 등등<br>
 모두 vuejs 보다는 d3에 문제되는 부분이라 공부를 하면서 그때, 그때 수정하려 하고 있습니다.<br>
@@ -98,7 +98,7 @@ src/components/sample 디렉토리에서 샘플 소스를 확인할 수 있습�
 
 	yarn global add @vue/cl
 
-작업 디렉토리를 정한 후 아래 명령으로 vue workspace를 잡아줍니다.
+작업 디렉토리를 정한 후 아래 명령으로 vue를 초기화합니다.
 
 	vue init webpack-simple chart
 	cd chart
@@ -108,6 +108,7 @@ src/components/sample 디렉토리에서 샘플 소스를 확인할 수 있습�
 	yarn add axios --dev
 
 chart 라는 디렉토리가 생성이 되며, 해당 디렉토리로 소스를 복사합니다.
+src 디렉토리와 index.html이 chart 디렉토리로 복사되면 됩니다.
 
 	webpack.cofig.js를 수정합니다.
 		entry: './src/main.js', -> entry: './src/mainChart.js',
@@ -121,10 +122,12 @@ chart 라는 디렉토리가 생성이 되며, 해당 디렉토리로 소스를 
 하지만 조금씩 수정하며 보완해 나가도록 하겠습니다. vuejs를 처음 공부하시는 분들에게 조금이나마 도움이 되었으면 합니다.
 프로젝트도 빨리 구해야 하네요.
 <br>
-위 데이타를 만들기 위해서 데이타를 만들어야 했는데요..아래 python 모듈과 연동할 수 있을 듯 싶습니다.
-사실, python을 공부하다가 여기까지 왔네요..
-
-https://github.com/ramoi/toobuk
+위 데이타를 만들기 위해서 데이타를 만들어야 했는데요..아래 python 모듈과 연동할 수 있습니다.
+사실, python을 공부하다가 여기까지 왔네요..<br>
+https://github.com/ramoi/toobuk<br>
+<br>
+장고와 연동할 수 있습니다.<br>
+https://github.com/ramoi/toobuk_vue<br>
 
 # 참고 사이트 
 ## 메뉴 만들기 참고 사이트 
