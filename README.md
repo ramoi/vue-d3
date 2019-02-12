@@ -22,8 +22,8 @@ src/components/sample 디렉토리에서 샘플 소스를 확인할 수 있습�
 
        	<d3-line id='p' :source='dataset' title='추이' :width=700 :height=320 :conf='{series:"year", x:"month", y:"price"}'></d3-line>
 
- 데이타 : 아래와 같은 형식으로 넣어줍니다. 위에 conf로 바인딩한 값 중 series값이 year입니다. 또한 y의 속성값이 있습니다.<br>
- 해당 year별로 data라는 배열이 있는 객체이며 그 값들이 배열로 구성되어 있습니다.
+ 데이타 : 아래와 같은 형식으로 넣어줍니다. 위에 conf로 바인딩한 값 중 series값이 year입니다. 
+ 해당 year별로 data라는 배열이 있는 객체이며 y의 속성값인 price값이 있습니다.
 
        dataset = [ 
           { year : '2017', 
@@ -35,13 +35,11 @@ src/components/sample 디렉토리에서 샘플 소스를 확인할 수 있습�
         ]
         
         
-###   1.2 두번째 형식입니다. 위와는 다르게 conf 설정의 y값이 배열입니다. 
+###   1.2 두번째 형식입니다. 
+위와는 다르게 conf 설정의 y값이 배열입니다. 
 
 	<d3-line id='houseProgress' :source='dataset2' title='추이' :width=700 :height=320 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["COUNTRY","CAPATIAL", "SEOUL", "SOUTH", "NORTH" ] }'></d3-line>
-
    	데이타 : 위의 데이타와는 달리 데이타베이스를 통해 얻어온 결과와 비슷합니다. y의 속성값이 배열로 이루어져 있습니다. 해당명이 또한 동시에 series명이 됩니다
-
-	<d3-line id='houseProgress' :source='dataset2' title='추이' :width=700 :height=320 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["COUNTRY","CAPATIAL", "SEOUL", "SOUTH", "NORTH" ] }'></d3-line>
        dataset2 = [{'DATE': 201802, 'COUNTRY': 0.2, 'CAPATIAL': 0.5, 'SEOUL': 0.9, 'SOUTH': 1.2, 'NORTH': 0.7}, {'DATE': 201803, 'COUNTRY': 0.1, 'CAPATIAL': 0.3, 'SEOUL': 0.6, 'SOUTH': 0.6, 'NORTH': 0.6}, {'DATE': 201804, 'COUNTRY': 0.1, 'CAPATIAL': 0.2, 'SEOUL': 0.3, 'SOUTH': 0.3, 'NORTH': 0.3}, {'DATE': 201805, 'COUNTRY': 0.0, 'CAPATIAL': 0.1, 'SEOUL': 0.2, 'SOUTH': 0.2, 'NORTH': 0.3}, {'DATE': 201806, 'COUNTRY': 0.0, 'CAPATIAL': 0.1, 'SEOUL': 0.2, 'SOUTH': 0.1, 'NORTH': 0.4}, {'DATE': 201807, 'COUNTRY': 0.0, 'CAPATIAL': 0.1, 'SEOUL': 0.3, 'SOUTH': 0.3, 'NORTH': 0.4}, {'DATE': 201808, 'COUNTRY': 0.0, 'CAPATIAL': 0.2, 'SEOUL': 0.6, 'SOUTH': 0.6, 'NORTH': 0.6}, {'DATE': 201809, 'COUNTRY': 0.3, 'CAPATIAL': 0.7, 'SEOUL': 1.3, 'SOUTH': 1.5, 'NORTH': 1.0}, {'DATE': 201810, 'COUNTRY': 0.2, 'CAPATIAL': 0.4, 'SEOUL': 0.5, 'SOUTH': 0.5, 'NORTH': 0.6}, {'DATE': 201811, 'COUNTRY': 0.1, 'CAPATIAL': 0.3, 'SEOUL': 0.2, 'SOUTH': 0.1, 'NORTH': 0.3}, {'DATE': 201812, 'COUNTRY': 0.0, 'CAPATIAL': 0.1, 'SEOUL': 0.0, 'SOUTH': -0.1, 'NORTH': 0.2}, {'DATE': 201901, 'COUNTRY': -0.1, 'CAPATIAL': -0.1, 'SEOUL': -0.2, 'SOUTH': -0.3, 'NORTH': -0.1}] 
 
 위 내용은 sample 디렉토리의 sample/Line.vue 에서 확인할 수 있습니다.
@@ -103,14 +101,30 @@ src/components/sample 디렉토리에서 샘플 소스를 확인할 수 있습�
 작업 디렉토리를 정한 후 아래 명령으로 vue workspace를 잡아줍니다.
 
 	vue init webpack-simple chart
+	cd chart
 	yarn
 	yarn add vue-router --dev
 	yarn add d3 --dev
 	yarn add axios --dev
 
-	chart 디렉토리 밑으로 내려받습니다.
+chart 라는 디렉토리가 생성이 되며, 해당 디렉토리로 소스를 복사합니다.
+
 	webpack.cofig.js를 수정합니다.
 		entry: './src/main.js', -> entry: './src/mainChart.js',
+
+이제 테스트를 할 차례입니다.
+
+	yarn run dev
+
+# 남은 이것저것
+아직은 여러가지로 부족합니다. 이걸로 실제 업무에 적용하기는 힘들거예요. 
+하지만 조금씩 수정하며 보완해 나가도록 하겠습니다. vuejs를 처음 공부하시는 분들에게 조금이나마 도움이 되었으면 합니다.
+프로젝트도 빨리 구해야 하네요.
+<br>
+위 데이타를 만들기 위해서 데이타를 만들어야 했는데요..아래 python 모듈과 연동할 수 있을 듯 싶습니다.
+사실, python을 공부하다가 여기까지 왔네요..
+
+https://github.com/ramoi/toobuk
 
 # 참고 사이트 
 ## 메뉴 만들기 참고 사이트 
