@@ -1,23 +1,34 @@
 # vue-d3
+vuejs를 공부하면서 어떤 주제로 이것을 활용할까 생각을 해보다가 d3js를 선택했습니다. 그런데 작업을 하면서 가장 힘들었던 부분이 d3였습니다.   
+개발자로 살아오면서 가장 힘들게 느껴지는 부분이 html인데, 원하는데로 모양이 안나오니 삽질만 하게 되더군요.  
+생각해보면, 아직 미진한 부분이 많습니다. complex라든지, y축을 오른쪽에 설정하는 것 등등  
+모두 vuejs 보다는 d3에 문제되는 부분이라 공부를 하면서 그때, 그때 수정하려 합니다.
 
-vuejs를 공부하면서 어떤 주제로 이것을 활용할까 생각을 해보다가 d3js를 선택했습니다. 그런데 작업을 하면서 가장 힘들었던 부분이 d3였습니다. 
-개발자로 살아오면서 가장 힘들게 느껴지는 부분이 html인데, 원하는데로 모양이 안나오니 삽질만 하게 되더군요.<br>
-생각해보면, 아직 미진한 부분이 많습니다. complex라든지, y축을 오른쪽에 설정하는 것 등등<br>
-모두 vuejs 보다는 d3에 문제되는 부분이라 공부를 하면서 그때, 그때 수정하려 합니다.<br>
-<br>
+src/components/d3 디렉토리에서 관련 vue 소스를 확인할 수 있습니다  
+Line 챠트의 경우 line.vue 이며, 바챠트의 경우는 bar.vue, 파이챠트는 circle.vue 입니다..    
+  
+src/components/sample 디렉토리에서 샘플 소스를 확인할 수 있습니다.   
 
-# 사용법 
 
-src/components/d3 디렉토리에서 관련 vue 소스를 확인할 수 있습니다<br>
-Line 챠트의 경우 line.vue 이며, 바챠트의 경우는 bar.vue, 파이챠트는 circle.vue 입니다..<br>
-<br>
-src/components/sample 디렉토리에서 샘플 소스를 확인할 수 있습니다.<br>
+## 차례
+1. [1. Line 챠트 ](#1.-Line-챠트)
+  1. [1.1 첫번째 형식](#1.1-첫번째-형식)
+  1. [1.2 두번째 형식 ](#1.2-두번째-형식 )
+1. [2. 바챠트 ](#2.-바챠트)
+1. [3. 원챠트 ](#3.-원챠트)
+1. [설치 ](#설치)
+  1. [1. 버젼 정보](#1.-버젼-정보)
+  1. [설치](#설치)
+1. [남은 이것저것](#남은-이것저것)
+1. [참고 사이트 ](#참고-사이트)
+  1. [메뉴 만들기 참고 사이트 ](#메뉴-만들기-참고-사이트)
+  1. [챠트 ](#챠트)
 
 ## 1. Line 챠트 
    데이타  형식이 두가지 입니다. 
    아래에서 확인 할 수 있습니다.
    
-###   1.1 첫번째 형식입니다.
+### 1.1 첫번째 형식
 태그: 중요한 것은 conf 설정의 "y"값입니다. 문자열로 받고 있습니다.
 
        	<d3-line id='p' :source='dataset' title='추이' :width=700 :height=320 :conf='{series:"year", x:"month", y:"price"}'></d3-line>
@@ -35,7 +46,7 @@ src/components/sample 디렉토리에서 샘플 소스를 확인할 수 있습�
         ]
         
         
-###   1.2 두번째 형식입니다. 
+### 1.2 두번째 형식 
 위와는 다르게 conf 설정의 y값이 배열입니다. 
 
 	<d3-line id='houseProgress' :source='dataset2' title='추이' :width=700 :height=320 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["COUNTRY","CAPATIAL", "SEOUL", "SOUTH", "NORTH" ] }'></d3-line>
@@ -85,15 +96,16 @@ src/components/sample 디렉토리에서 샘플 소스를 확인할 수 있습�
 	var dataset = [{ name:'Aaaaaaaaaaaaaaaaaaaaaaaaa1', value: 10}, {name : 'Aaaaaaa2', value: 40}, {name : 'Aaaaaaaaaaaaaaaaaaa3', value: 20}, {name : 'Aaaaaaaaaaaaaaaaaaa4', value: 100} ]
    
 
-# 설치 
+## 설치 
 
-## 1. 버젼 정보 
+### 1. 버젼 정보 
 	vue@2.6.4
 	vue-router@3.0.2
 	d3@5.9.0
 	axios@0.18.0
 	webpack@3.12.0
-## 2. 설치 
+
+### 2. 설치 
 우선 node와 vue-cli가 설치되었다는 가정하에 진행하겠습니다. 
 
 	yarn global add @vue/cl
@@ -117,23 +129,23 @@ src 디렉토리와 index.html이 chart 디렉토리로 복사되면 됩니다.
 
 	yarn run dev
 
-# 남은 이것저것
+## 남은 이것저것
 아직은 여러가지로 부족합니다. 이놈을 실제 업무에 적용하기에는 아직 여러가지로 구현이 안된 기능이 많아요.
 하지만 조금씩 수정하며 보완해 나가도록 하겠습니다. vuejs를 처음 공부하시는 분들에게 조금이나마 도움이 되었으면 합니다.
 프로젝트도 빨리 구해야 하네요.
-<br>
+  
 위 데이타를 만들기 위해서 데이타를 만들어야 했는데요..아래 python 모듈과 연동할 수 있습니다.
-사실, python을 공부하다가 여기까지 왔네요..<br>
-https://github.com/ramoi/toobuk<br>
-<br>
-장고와 연동할 수 있습니다.<br>
-https://github.com/ramoi/toobuk_vue<br>
+사실, python을 공부하다가 여기까지 왔네요..  
+https://github.com/ramoi/toobuk  
+  
+장고와 연동할 수 있습니다.  
+https://github.com/ramoi/toobuk_vue  
 
-# 참고 사이트 
-## 메뉴 만들기 참고 사이트 
-https://medium.com/@disjfa/creating-navigation-using-vue-router-59d0b12ab75f<br>
-https://medium.com/@BjornKrols/integrating-and-customising-bootstrap-4-in-vue-js-cbc29ba7688e<br>
+## 참고 사이트 
+### 메뉴 만들기 참고 사이트 
+https://medium.com/@disjfa/creating-navigation-using-vue-router-59d0b12ab75f  
+https://medium.com/@BjornKrols/integrating-and-customising-bootstrap-4-in-vue-js-cbc29ba7688e  
 
-## 3 챠트 
-https://codelib.tistory.com/10<br>
-https://blog.risingstack.com/d3-js-tutorial-bar-charts-with-javascript<br>
+### 챠트 
+https://codelib.tistory.com/10  
+https://blog.risingstack.com/d3-js-tutorial-bar-charts-with-javascript  
