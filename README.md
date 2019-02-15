@@ -11,18 +11,18 @@ src/components/sample 디렉토리에서 샘플 소스를 확인할 수 있습�
 
 
 ## 차례
-1. [1. Line 챠트 ](#1-Line-챠트)
-  1. [1.1 첫번째 형식](#11-첫번째-형식)
-  1. [1.2 두번째 형식 ](#12-두번째-형식 )
-1. [2. 바챠트 ](#2-바챠트)
-1. [3. 원챠트 ](#3-원챠트)
+1. [Line 챠트 ](#1-Line-챠트)
+	1. [첫번째 형식](#11-첫번째-형식)
+	1. [두번째 형식 ](#12-두번째-형식 )
+1. [바챠트 ](#2-바챠트)
+1. [원챠트 ](#3-원챠트)
 1. [설치 ](#설치)
-  1. [1. 버젼 정보](#1-버젼-정보)
-  1. [설치](#2-설치)
+	1. [버젼 정보](#1-버젼-정보)
+	1. [설치](#2-설치)
 1. [남은 이것저것](#남은-이것저것)
 1. [참고 사이트 ](#참고-사이트)
-  1. [메뉴 만들기 참고 사이트 ](#메뉴-만들기-참고-사이트)
-  1. [챠트 ](#챠트)
+	1. [메뉴 만들기 참고 사이트 ](#메뉴-만들기-참고-사이트)
+	1. [챠트 ](#챠트)
 
 ## 1. Line 챠트 
    데이타  형식이 두가지 입니다. 
@@ -31,62 +31,62 @@ src/components/sample 디렉토리에서 샘플 소스를 확인할 수 있습�
 ### 1.1 첫번째 형식
 태그: 중요한 것은 conf 설정의 "y"값입니다. 문자열로 받고 있습니다.
 
-       	<d3-line id='p' :source='dataset' title='추이' :width=700 :height=320 :conf='{series:"year", x:"month", y:"price"}'></d3-line>
+		<d3-line id='p' :source='dataset' title='추이' :width=700 :height=320 :conf='{series:"year", x:"month", y:"price"}'></d3-line>
 
  데이타 : 아래와 같은 형식으로 넣어줍니다. 위에 conf로 바인딩한 값 중 series값이 year입니다. 
  해당 year별로 data라는 배열이 있는 객체이며 y의 속성값인 price값이 있습니다.
 
-       dataset = [ 
-          { year : '2017', 
-            data : [{month:1, price:17}, {month:2, price:27}, {month:3, price:37}, {month:4, price:27}, {month:5, price:17}, {month:6, price:7},  {month:7, price:9}, {month:8, price:19}, {month:9, price:29}, {month:10, price:19}, {month:11, price:9}, {month:12, price:0}] 
-            },
-          { year : '2018', 
-            data : [{month:1, price:9}, {month:2, price:19}, {month:3, price:29}, {month:4, price:39}, {month:5, price:29}, {month:6, price:19}, {month:7, price:9}, {month:8, price:7}, {month:9, price:17}, {month:10, price:27}, {month:11, price:17}, {month:12, price:7}] 
-          }
-        ]
-        
-        
+	   dataset = [ 
+		  { year : '2017', 
+			data : [{month:1, price:17}, {month:2, price:27}, {month:3, price:37}, {month:4, price:27}, {month:5, price:17}, {month:6, price:7},  {month:7, price:9}, {month:8, price:19}, {month:9, price:29}, {month:10, price:19}, {month:11, price:9}, {month:12, price:0}] 
+			},
+		  { year : '2018', 
+			data : [{month:1, price:9}, {month:2, price:19}, {month:3, price:29}, {month:4, price:39}, {month:5, price:29}, {month:6, price:19}, {month:7, price:9}, {month:8, price:7}, {month:9, price:17}, {month:10, price:27}, {month:11, price:17}, {month:12, price:7}] 
+		  }
+		]
+		
+		
 ### 1.2 두번째 형식 
 위와는 다르게 conf 설정의 y값이 배열입니다. 
 
 	<d3-line id='houseProgress' :source='dataset2' title='추이' :width=700 :height=320 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["COUNTRY","CAPATIAL", "SEOUL", "SOUTH", "NORTH" ] }'></d3-line>
-   	데이타 : 위의 데이타와는 달리 데이타베이스를 통해 얻어온 결과와 비슷합니다. y의 속성값이 배열로 이루어져 있습니다. 해당명이 또한 동시에 series명이 됩니다
-       dataset2 = [{'DATE': 201802, 'COUNTRY': 0.2, 'CAPATIAL': 0.5, 'SEOUL': 0.9, 'SOUTH': 1.2, 'NORTH': 0.7}, {'DATE': 201803, 'COUNTRY': 0.1, 'CAPATIAL': 0.3, 'SEOUL': 0.6, 'SOUTH': 0.6, 'NORTH': 0.6}, {'DATE': 201804, 'COUNTRY': 0.1, 'CAPATIAL': 0.2, 'SEOUL': 0.3, 'SOUTH': 0.3, 'NORTH': 0.3}, {'DATE': 201805, 'COUNTRY': 0.0, 'CAPATIAL': 0.1, 'SEOUL': 0.2, 'SOUTH': 0.2, 'NORTH': 0.3}, {'DATE': 201806, 'COUNTRY': 0.0, 'CAPATIAL': 0.1, 'SEOUL': 0.2, 'SOUTH': 0.1, 'NORTH': 0.4}, {'DATE': 201807, 'COUNTRY': 0.0, 'CAPATIAL': 0.1, 'SEOUL': 0.3, 'SOUTH': 0.3, 'NORTH': 0.4}, {'DATE': 201808, 'COUNTRY': 0.0, 'CAPATIAL': 0.2, 'SEOUL': 0.6, 'SOUTH': 0.6, 'NORTH': 0.6}, {'DATE': 201809, 'COUNTRY': 0.3, 'CAPATIAL': 0.7, 'SEOUL': 1.3, 'SOUTH': 1.5, 'NORTH': 1.0}, {'DATE': 201810, 'COUNTRY': 0.2, 'CAPATIAL': 0.4, 'SEOUL': 0.5, 'SOUTH': 0.5, 'NORTH': 0.6}, {'DATE': 201811, 'COUNTRY': 0.1, 'CAPATIAL': 0.3, 'SEOUL': 0.2, 'SOUTH': 0.1, 'NORTH': 0.3}, {'DATE': 201812, 'COUNTRY': 0.0, 'CAPATIAL': 0.1, 'SEOUL': 0.0, 'SOUTH': -0.1, 'NORTH': 0.2}, {'DATE': 201901, 'COUNTRY': -0.1, 'CAPATIAL': -0.1, 'SEOUL': -0.2, 'SOUTH': -0.3, 'NORTH': -0.1}] 
+	데이타 : 위의 데이타와는 달리 데이타베이스를 통해 얻어온 결과와 비슷합니다. y의 속성값이 배열로 이루어져 있습니다. 해당명이 또한 동시에 series명이 됩니다
+	   dataset2 = [{'DATE': 201802, 'COUNTRY': 0.2, 'CAPATIAL': 0.5, 'SEOUL': 0.9, 'SOUTH': 1.2, 'NORTH': 0.7}, {'DATE': 201803, 'COUNTRY': 0.1, 'CAPATIAL': 0.3, 'SEOUL': 0.6, 'SOUTH': 0.6, 'NORTH': 0.6}, {'DATE': 201804, 'COUNTRY': 0.1, 'CAPATIAL': 0.2, 'SEOUL': 0.3, 'SOUTH': 0.3, 'NORTH': 0.3}, {'DATE': 201805, 'COUNTRY': 0.0, 'CAPATIAL': 0.1, 'SEOUL': 0.2, 'SOUTH': 0.2, 'NORTH': 0.3}, {'DATE': 201806, 'COUNTRY': 0.0, 'CAPATIAL': 0.1, 'SEOUL': 0.2, 'SOUTH': 0.1, 'NORTH': 0.4}, {'DATE': 201807, 'COUNTRY': 0.0, 'CAPATIAL': 0.1, 'SEOUL': 0.3, 'SOUTH': 0.3, 'NORTH': 0.4}, {'DATE': 201808, 'COUNTRY': 0.0, 'CAPATIAL': 0.2, 'SEOUL': 0.6, 'SOUTH': 0.6, 'NORTH': 0.6}, {'DATE': 201809, 'COUNTRY': 0.3, 'CAPATIAL': 0.7, 'SEOUL': 1.3, 'SOUTH': 1.5, 'NORTH': 1.0}, {'DATE': 201810, 'COUNTRY': 0.2, 'CAPATIAL': 0.4, 'SEOUL': 0.5, 'SOUTH': 0.5, 'NORTH': 0.6}, {'DATE': 201811, 'COUNTRY': 0.1, 'CAPATIAL': 0.3, 'SEOUL': 0.2, 'SOUTH': 0.1, 'NORTH': 0.3}, {'DATE': 201812, 'COUNTRY': 0.0, 'CAPATIAL': 0.1, 'SEOUL': 0.0, 'SOUTH': -0.1, 'NORTH': 0.2}, {'DATE': 201901, 'COUNTRY': -0.1, 'CAPATIAL': -0.1, 'SEOUL': -0.2, 'SOUTH': -0.3, 'NORTH': -0.1}] 
 
 위 내용은 sample 디렉토리의 sample/Line.vue 에서 확인할 수 있습니다.
 
 ## 2. 바챠트 
    바챠트는 우선, 데이타베이스 형식만 받았습니다. 아래 태그를 보면 차이를 느끼실 수 있을거예요..
    
-    <d3-bar id='bar1' :source='dataset1' title='Most loved programming languages' :width=1000 :height=600 :conf='{series:"language", x:"year", y:"value"}'></d3-bar>
-    <d3-bar id='bar2' :source='dataset2' title='Most loved programming languages' :width=1000 :height=600 :conf='{x:"language", y:"value"}'></d3-bar>
+	<d3-bar id='bar1' :source='dataset1' title='Most loved programming languages' :width=1000 :height=600 :conf='{series:"language", x:"year", y:"value"}'></d3-bar>
+	<d3-bar id='bar2' :source='dataset2' title='Most loved programming languages' :width=1000 :height=600 :conf='{x:"language", y:"value"}'></d3-bar>
 
-    dataset1 = [
-      {year:'2016', language: 'Rust', value: 78.9, },
-      {year:'2016', language: 'Kotlin', value: 75.1, },
-      {year:'2016', language: 'Python', value: 68.0, },
-      {year:'2016', language: 'TypeScript', value: 67.0, },
-      {year:'2016', language: 'Go', value: 65.6, },
-      {year:'2016', language: 'Swift', value: 65.1, },
-      {year:'2016', language: 'JavaScript', value: 61.9, },
-      {year:'2016', language: 'C#', value: 60.4, },
-      {year:'2016', language: 'F#', value: 59.6, },
-      {year:'2016', language: 'Clojure', value: 49.6, },
+	dataset1 = [
+	  {year:'2016', language: 'Rust', value: 78.9, },
+	  {year:'2016', language: 'Kotlin', value: 75.1, },
+	  {year:'2016', language: 'Python', value: 68.0, },
+	  {year:'2016', language: 'TypeScript', value: 67.0, },
+	  {year:'2016', language: 'Go', value: 65.6, },
+	  {year:'2016', language: 'Swift', value: 65.1, },
+	  {year:'2016', language: 'JavaScript', value: 61.9, },
+	  {year:'2016', language: 'C#', value: 60.4, },
+	  {year:'2016', language: 'F#', value: 59.6, },
+	  {year:'2016', language: 'Clojure', value: 49.6, },
 
-      {year:'2017', language: 'Rust', value: 58.9, },
-      {year:'2017', language: 'Kotlin', value: 25.1, },
-      {year:'2017', language: 'Python', value: 78.0, },
-      {year:'2017', language: 'TypeScript', value: 47.0, },
-      {year:'2017', language: 'Go', value: 85.6, },
-      {year:'2017', language: 'Swift', value: 25.1, },
-      {year:'2017', language: 'JavaScript', value: 71.9, },
-      {year:'2017', language: 'C#', value: 40.4, },
-      {year:'2017', language: 'F#', value: 19.6, },
-      {year:'2017', language: 'Clojure', value: 12.6, }
-    ];
+	  {year:'2017', language: 'Rust', value: 58.9, },
+	  {year:'2017', language: 'Kotlin', value: 25.1, },
+	  {year:'2017', language: 'Python', value: 78.0, },
+	  {year:'2017', language: 'TypeScript', value: 47.0, },
+	  {year:'2017', language: 'Go', value: 85.6, },
+	  {year:'2017', language: 'Swift', value: 25.1, },
+	  {year:'2017', language: 'JavaScript', value: 71.9, },
+	  {year:'2017', language: 'C#', value: 40.4, },
+	  {year:'2017', language: 'F#', value: 19.6, },
+	  {year:'2017', language: 'Clojure', value: 12.6, }
+	];
 
-    dataset2 = dataset1.slice(10)
-    
+	dataset2 = dataset1.slice(10)
+	
 위 내용은 sample 디렉토리의 sample/Bar.vue 에서 확인할 수 있습니다.
 
 ## 3. 원챠트 
@@ -142,6 +142,12 @@ https://github.com/ramoi/toobuk
 https://github.com/ramoi/toobuk_vue  
 
 ## 참고 사이트 
+https://vuejs.org/
+https://router.vuejs.org/
+
+https://d3js.org/
+http://bl.ocks.org/emmasaunders/c25a147970def2b02d8c7c2719dc7502
+
 ### 메뉴 만들기 참고 사이트 
 https://medium.com/@disjfa/creating-navigation-using-vue-router-59d0b12ab75f  
 https://medium.com/@BjornKrols/integrating-and-customising-bootstrap-4-in-vue-js-cbc29ba7688e  
