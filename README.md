@@ -140,14 +140,14 @@ vuejs를 처음 공부하시는 분들에게 조금이나마 도움이 되었으
 아래 python 모듈과 연동할 수 있습니다. 사실, python을 공부하다가 여기까지 왔네요.  
 https://github.com/ramoi/toobuk  
   
-장고와 연동할 수 있습니다.  
+장고에서 사용해 봤습니다. 
 https://github.com/ramoi/toobuk_vue  
 
 ## 참고 사이트 
-https://vuejs.org/
-https://router.vuejs.org/
+https://vuejs.org/  
+https://router.vuejs.org/  
 
-https://d3js.org/
+https://d3js.org/  
 http://bl.ocks.org/emmasaunders/c25a147970def2b02d8c7c2719dc7502
 
 ### 메뉴 만들기 참고 사이트 
