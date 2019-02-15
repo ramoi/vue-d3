@@ -50,7 +50,9 @@ src/components/sample 디렉토리에서 샘플 소스를 확인할 수 있습�
 위와는 다르게 conf 설정의 y값이 배열입니다. 
 
 	<d3-line id='houseProgress' :source='dataset2' title='추이' :width=700 :height=320 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["COUNTRY","CAPATIAL", "SEOUL", "SOUTH", "NORTH" ] }'></d3-line>
-	데이타 : 위의 데이타와는 달리 데이타베이스를 통해 얻어온 결과와 비슷합니다. y의 속성값이 배열로 이루어져 있습니다. 해당명이 또한 동시에 series명이 됩니다
+
+데이타 : 위의 데이타와는 달리 데이타베이스를 통해 얻어온 결과와 비슷합니다. y의 속성값이 배열로 이루어져 있습니다. 해당명이 또한 동시에 series명이 됩니다
+
 	   dataset2 = [{'DATE': 201802, 'COUNTRY': 0.2, 'CAPATIAL': 0.5, 'SEOUL': 0.9, 'SOUTH': 1.2, 'NORTH': 0.7}, {'DATE': 201803, 'COUNTRY': 0.1, 'CAPATIAL': 0.3, 'SEOUL': 0.6, 'SOUTH': 0.6, 'NORTH': 0.6}, {'DATE': 201804, 'COUNTRY': 0.1, 'CAPATIAL': 0.2, 'SEOUL': 0.3, 'SOUTH': 0.3, 'NORTH': 0.3}, {'DATE': 201805, 'COUNTRY': 0.0, 'CAPATIAL': 0.1, 'SEOUL': 0.2, 'SOUTH': 0.2, 'NORTH': 0.3}, {'DATE': 201806, 'COUNTRY': 0.0, 'CAPATIAL': 0.1, 'SEOUL': 0.2, 'SOUTH': 0.1, 'NORTH': 0.4}, {'DATE': 201807, 'COUNTRY': 0.0, 'CAPATIAL': 0.1, 'SEOUL': 0.3, 'SOUTH': 0.3, 'NORTH': 0.4}, {'DATE': 201808, 'COUNTRY': 0.0, 'CAPATIAL': 0.2, 'SEOUL': 0.6, 'SOUTH': 0.6, 'NORTH': 0.6}, {'DATE': 201809, 'COUNTRY': 0.3, 'CAPATIAL': 0.7, 'SEOUL': 1.3, 'SOUTH': 1.5, 'NORTH': 1.0}, {'DATE': 201810, 'COUNTRY': 0.2, 'CAPATIAL': 0.4, 'SEOUL': 0.5, 'SOUTH': 0.5, 'NORTH': 0.6}, {'DATE': 201811, 'COUNTRY': 0.1, 'CAPATIAL': 0.3, 'SEOUL': 0.2, 'SOUTH': 0.1, 'NORTH': 0.3}, {'DATE': 201812, 'COUNTRY': 0.0, 'CAPATIAL': 0.1, 'SEOUL': 0.0, 'SOUTH': -0.1, 'NORTH': 0.2}, {'DATE': 201901, 'COUNTRY': -0.1, 'CAPATIAL': -0.1, 'SEOUL': -0.2, 'SOUTH': -0.3, 'NORTH': -0.1}] 
 
 위 내용은 sample 디렉토리의 sample/Line.vue 에서 확인할 수 있습니다.
@@ -108,7 +110,7 @@ src/components/sample 디렉토리에서 샘플 소스를 확인할 수 있습�
 ### 2. 설치 
 우선 node와 vue-cli가 설치되었다는 가정하에 진행하겠습니다. 
 
-	yarn global add @vue/cl
+	yarn global add @vue/cli
 
 작업 디렉토리를 정한 후 아래 명령으로 vue를 초기화합니다.
 
