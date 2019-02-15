@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div><button @click='getData'>조회</button></div>
-		<d3-line id='stock' :source='stock' title='추이' :width=700 :height=320 :conf='{series:"stockName", x:"DATE", y:"END_PRICE", margin:{top:10, right:10, bottom:20, left:50 }}'></d3-line>
+		<d3-line id='stock' :source='stock' title='주가 추이' :width=700 :height=320 :conf='{series:"stockName", x:"DATE", y:"END_PRICE", margin:{top:10, right:10, bottom:20, left:50 }}'></d3-line>
 	</div>
 </template>
 

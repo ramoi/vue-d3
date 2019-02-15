@@ -2,7 +2,7 @@
 	<div>
 		<div><button @click='getData'>조회</button></div>
 		<!-- <d3-line id='houseProgress' ref='houseProgress' title='추이' :width=700 :height=700 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:{"전국":"COUNTRY", "수도권":"CAPATIAL","서울":"SEOUL","강남":"SOUTH","강북":"NORTH" }}'></d3-line> -->
-		<d3-line id='houseProgress' :source='houseProgress' title='추이' :width=700 :height=700 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["COUNTRY","CAPATIAL", "SEOUL", "SOUTH", "NORTH" ] }'></d3-line>
+		<d3-line id='houseProgress' :source='houseProgress' title='집가격 추이' :width=700 :height=700 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["COUNTRY","CAPATIAL", "SEOUL", "SOUTH", "NORTH" ] }'></d3-line>
 		<div>
 			<select v-model='selectLoc' @change='getLoc'>
 				<option value=''>선택</option>

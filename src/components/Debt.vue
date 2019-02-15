@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div>
-			<d3-bar id='m2' :source='m2' title='국가채무비율 (GDP 대비)' :width=1000 :height=600 :conf='{x:"YEAR", y:"DEBT_RATIO", xName : "연도", yName: "GDP 대비 국가채무 비율(%)"}'></d3-bar>
+			<d3-bar id='m2' :source='m2' title='국가채무비율(GDP 대비)' :width=1000 :height=600 :conf='{x:"YEAR", y:"DEBT_RATIO", xName : "연도", yName: "GDP 대비 국가채무 비율(%)"}'></d3-bar>
 		</div>
 		<div>
 			<div>

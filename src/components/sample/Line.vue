@@ -1,8 +1,8 @@
  <template>
   <div>
     <!-- <div><button @click='getData'>데이타 가져오기</button></div> -->
-    <d3-line id='stock' :source='dataset1' title='추이' :width=700 :height=320 :conf='{series:"year", x:"month", y:"price"}'></d3-line>
-    <d3-line id='houseProgress' :source='dataset2' title='추이' :width=700 :height=320 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["COUNTRY","CAPATIAL", "SEOUL", "SOUTH", "NORTH" ] }'></d3-line>
+    <d3-line id='stock' :source='dataset1' title='주가추이' :width=700 :height=320 :conf='{series:"year", x:"month", y:"price"}'></d3-line>
+    <d3-line id='houseProgress' :source='dataset2' title='부채 추이' :width=700 :height=320 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["COUNTRY","CAPATIAL", "SEOUL", "SOUTH", "NORTH" ] }'></d3-line>
     <div>참고 사이트 : https://codelib.tistory.com/10/</div>
   </div>
 </template>
