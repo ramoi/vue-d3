@@ -29,16 +29,17 @@
 			xConf : { type : Object },
 			yConf : { type : Object }
 		},
-		methods : {
-			clear() {
-				if( !this.svgElement ) {
-					let svg = !!this.svg ? d3.select('#' + this.svg) : d3.select(this.$el).append('svg').attr('width', this.width).attr('height', this.height);
-					console.log(`svg clear.....id:: ${this.id}..,`, svg.empty());
-					this.svgElement = svg.append('g').attr('id', this.id).attr('class', 'chart')
-				} else {
-					this.svgElement.select(this.id).selectAll('*').remove();
-				}
-			}
+		created() {
+			eb.$on('setData', (source) => {
+				this.setSource( source );
+			});
+
+			this.configure = chart.getLine(d3, this.conf);
+
+		},
+		mounted() {
+			let svg = !!this.svg ? d3.select('#' + this.svg) : d3.select(this.$el).append('svg').attr('width', this.width).attr('height', this.height);
+			this.svgElement = svg.append('g').attr('id', this.id).attr('class', 'chart')
 		},
 		data() {
 			return {
@@ -47,21 +48,15 @@
 				lgc : undefined
 			}
 		},
-		created() {
-			console.log( 'line chart created.....id::', this.id);
-			eb.$on('setData', (source) => {
-				this.setSource( source );
-			});
-
-			this.configure = chart.getLine(d3, this.conf);
-
+		methods : {
+			clear() {
+				this.svgElement.selectAll('*').remove();
+			}
 		},
 		watch : {
 			source : function(  ) {
 				let getLgc = function () {
 					let $this = this
-					const _y = $this.configure.y
-					const _s = $this.source
 
 					let getMinMax = (r, row, y) => {
 						if( r.length === 0 ) {
@@ -103,11 +98,11 @@
 						.enter()
 						.append('g')
 						.append('circle')
-						.style('fill', d => {console.log( 'd=', d, ', series=',getSeriesName(d) ); return $this.configure.getColor( getSeriesName(d) ) } )
+						.style('fill', d => { /*console.log( 'd=', d, ', series=',getSeriesName(d) ); */ return $this.configure.getColor( getSeriesName(d) ) } )
 						.attr('class', 'dot')
 						.attr('r', 3)
-						.attr('cx', d => { console.log(d, d[$this.configure.x]); return xScale(d[$this.configure.x]) } )
-						.attr('cy', d => { console.log(d, d[y]); return yScale( d[y]) } )
+						.attr('cx', d => { /*console.log(d, d[$this.configure.x]); */ return xScale(d[$this.configure.x]) } )
+						.attr('cy', d => { /*console.log(d, d[y]); */ return yScale( d[y]) } )
 						.on('mouseover', () => tooltip.style('display', null) )
 						.on('mouseout',  () => tooltip.style('display', 'none') )
 						.on('mousemove', d => {
@@ -124,50 +119,46 @@
 						.style('display', 'none');
 					}
 
-					return Array.isArray(_y) ? {
+					return Array.isArray($this.configure.y) ? {
 						xDomain : function() {
-							return _s.map( d => d[$this.configure.x] )
+							return $this.source.map( d => d[$this.configure.x] )
 						},
 						range : function( ) {
 							let r = []
-							_s.forEach( row => {
-								_y.forEach( y => getMinMax(r, row, y) )
+							$this.source.forEach( row => {
+								$this.configure.y.forEach( y => getMinMax(r, row, y) )
 							})
-							console.log('min,max=' , r)
 							return r
 						},
 						setSeries : function(svgG, xScale, yScale)  { 
-							_y.forEach( (y) => {
+							$this.configure.y.forEach( (y) => {
 								setSeries(y, svgG, [$this.source], d=>d, d=>y, xScale, yScale ) 
 							})
 						},
 						getSeries : function() {
-							return _y
+							return $this.configure.y
 						}
 					} : {
 						xDomain : function() {
-							return _s[0].data.map( d => d[$this.configure.x] )
+							return $this.source[0].data.map( d => d[$this.configure.x] )
 						},
 						range : function( ) {
 							let r = []
-							_s.forEach( s => {
-								s.data.forEach( row => getMinMax(r, row, _y) )
+							$this.source.forEach( s => {
+								s.data.forEach( row => getMinMax(r, row, $this.configure.y) )
 							})
-							console.log('min,max=' , r)
 							return r
 						},
 						setSeries : function(svgG, xScale, yScale) {
-							setSeries(_y, svgG, $this.source, d=>d.data, d=>d[$this.configure.series], xScale, yScale ) 
+							setSeries($this.configure.y, svgG, $this.source, d=>d.data, d=>d[$this.configure.series], xScale, yScale ) 
 						},
 						getSeries : function() {
-							return _s.map( d => d[$this.configure.series] )
+							return $this.source.map( d => d[$this.configure.series] )
 						}
 					}
 				}
 
 				return function( _s )  {
-					console.log( 'line chart watch.....id::', this.id);
-
 					const $this = this;
 					if( $this.lgc === undefined ) {
 						$this.lgc = getLgc.apply($this)

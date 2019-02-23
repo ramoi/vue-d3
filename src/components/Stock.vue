@@ -20,7 +20,7 @@
 		},
 		methods : {
 			getData : function() {
-				this.$http.get('/stock/getStock')
+				this.$http.get('/stock')
 				.then((r) => {
 					console.log(r.data)
 					this.stock = r.data.stock;

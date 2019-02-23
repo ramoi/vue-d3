@@ -1,18 +1,14 @@
 <template>
 	<div>
-		<div><button @click='getData'>조회</button></div>
-		<!-- <d3-line id='houseProgress' ref='houseProgress' title='추이' :width=700 :height=700 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:{"전국":"COUNTRY", "수도권":"CAPATIAL","서울":"SEOUL","강남":"SOUTH","강북":"NORTH" }}'></d3-line> -->
-		<d3-line id='houseProgress' :source='houseProgress' title='집가격 추이' :width=700 :height=700 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["COUNTRY","CAPATIAL", "SEOUL", "SOUTH", "NORTH" ] }'></d3-line>
+		<d3-line id='tradeChangeRate' :source='tradeChangeRate' title='집가격 증감율 추이' :width=700 :height=700 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["전국","수도권", "서울", "강남", "강북" ] }'></d3-line>
+		<d3-line id='charterChangeRate' :source='charterChangeRate' title='전세가격 증감율 추이' :width=700 :height=700 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["전국","수도권", "서울", "강남", "강북" ] }'></d3-line>
 		<div>
-			<select v-model='selectLoc' @change='getLoc'>
+			<select v-model='selectLoc'>
 				<option value=''>선택</option>
 				<option v-for='loc in locList' :value='loc'>{{loc}}</option>
 			</select>
-			<select v-model='selectDate' @change='getLoc'>
-				<option value=''>선택</option>
-				<option v-for='date in dateList' :value='date'>{{date}}</option>
-			</select>
 		</div>
+		<d3-line id='compareRate' :source='compareRate' :title='compareTitle' :width=700 :height=700 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["집값","전세"] }'></d3-line>
 	</div>
 </template>
 
@@ -31,30 +27,40 @@
 				dateList: [],
 				selectDate : '',
 				deptCp : undefined,
-				houseProgress: undefined
+				tradeChangeRate: undefined,
+				charterChangeRate: undefined,
+				compareTitle : '증감율 추이'
 			}
 		},
-		created() {
-			this.$http.get('/house/getLoc')
+		mounted() {
+			this.$http.get('/house/trade')
 				.then((r) => {
 					console.log( r.data );
-					this.locList = r.data.result.map( e => e.LOC )
+					this.locList = r.data.result.loc.map( e => e.LOC )
+					this.dateList = r.data.result.date.map( e => e.DATE )
+					this.tradeChangeRate = r.data.result.changeRate
 				})
 
-			this.$http.get('/house/getDate')
+			this.$http.get('/house/charter')
 				.then((r) => {
-					console.log( r.data );
-					this.dateList = r.data.result.map( e => e.DATE )
+					console.log( r.data )
+					this.charterChangeRate =  r.data.result.changeRate ;
 				})
 		},
-		methods : {
-			getData : function() {
+		computed : {
+			compareRate : function() {
+				if( !( this.selectLoc && this.tradeChangeRate && this.charterChangeRate ) ) {
+					return 
+				}
 
-				this.$http.get('/house/getTradeIDRatio')
-				.then((r) => {
-					console.log( r.data.result )
-					this.houseProgress =  r.data.result ;
-				})
+				this.compareTitle = `[${this.selectLoc}]증감율 추이`
+
+				const result = []
+				for( let i = 0, t = this.tradeChangeRate.length; i < t ; i++ ) {
+					result.push( { 'DATE': this.tradeChangeRate[i].DATE, '집값' : this.tradeChangeRate[i][this.selectLoc], '전세':this.charterChangeRate[i][this.selectLoc]} )
+				}
+
+				return result
 			}
 		}
 	}

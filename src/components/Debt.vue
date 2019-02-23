@@ -38,7 +38,7 @@
 				yearList: [],
 				selectYear : '',
 				m2 : undefined,
-				deptCp : undefined,
+				debtCp : undefined,
 				dc : undefined,
 				dcDtl :undefined,
 				dc2 : undefined,
@@ -46,35 +46,25 @@
 				financeDtl : undefined
 			}
 		},
-		created() {
-			this.getData()
+		mounted() {
+			this.$http.get('/debt')
+			.then((r) => {
+				console.log(r.data.result )
+				this.m2 = r.data.result.date
+				this.debtCp = r.data.result.debtCp
+				this.yearList  = r.data.result.date.map( e => e.YEAR )
+			})
 		},
 		methods : {
-			getData : function() {
-				this.$http.get('/debt/gDebt')
-				.then((r) => {
-					console.log(r.data.result )
-					this.m2 = r.data.result
-					this.yearList  = r.data.result.map( e => e.YEAR )
-				})
-			},
 			getDeptCp : function() {
-				if( this.deptCp === undefined ) {
-					this.$http.get('/debt/deptCp')
-					.then((r) => {
-						this.deptCp = r.data.result
-						this.getDeptCp()
-					})
-				} else {
-					let thisVue = this
-					console.log(this.selectYear, "::", this.deptCp)
-					let dc = this.deptCp.find( e => e.YEAR === thisVue.selectYear )
-					this.dc =  [{ d : '중앙정부', val:dc.CENTERAL_GOVERNMENT }, { d : '지방정부 순채무', val:dc.LOCAL_GOVERNMENT } ] 
-					this.dcDtl =  [{ d : '국채', val:dc.national_debt }, { d : '차입금', val:dc.loan }, { d : '국고채무부담행위', val:dc.ntlba } ] 
-					this.dc2 =  [{ d : '적자성채무', val:dc.LEGAL }, { d : '금융성채무', val:dc.FINANCE } ] 
-					this.legalDtl =  [{ d : '일반회계 적자보전', val:dc.loss_preserve }, { d : '공적자금 국채전환 등', val:dc.to_national_from_public } ] 
-					this.financeDtl =  [{ d : '외환시장 안정용', val:dc.exchange_stablity }, { d : '서민주거 안정용 등', val:dc.house_stablity } ] 
-				}
+				let thisVue = this
+				console.log(this.selectYear, "::", this.debtCp)
+				let dc = this.debtCp.find( e => e.YEAR === thisVue.selectYear )
+				this.dc =  [{ d : '중앙정부', val:dc.CENTERAL_GOVERNMENT }, { d : '지방정부 순채무', val:dc.LOCAL_GOVERNMENT } ] 
+				this.dcDtl =  [{ d : '국채', val:dc.national_debt }, { d : '차입금', val:dc.loan }, { d : '국고채무부담행위', val:dc.ntlba } ] 
+				this.dc2 =  [{ d : '적자성채무', val:dc.LEGAL }, { d : '금융성채무', val:dc.FINANCE } ] 
+				this.legalDtl =  [{ d : '일반회계 적자보전', val:dc.loss_preserve }, { d : '공적자금 국채전환 등', val:dc.to_national_from_public } ] 
+				this.financeDtl =  [{ d : '외환시장 안정용', val:dc.exchange_stablity }, { d : '서민주거 안정용 등', val:dc.house_stablity } ] 
 			}
 		}
 	}

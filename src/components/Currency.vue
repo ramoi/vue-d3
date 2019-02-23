@@ -28,7 +28,7 @@
 				{ year : '2018', data : [{month:1, price:9}, {month:2, price:19}, {month:3, price:29}, {month:4, price:39}, {month:5, price:29}, {month:6, price:19}, {month:7, price:9}, {month:8, price:7}, {month:9, price:17}, {month:10, price:27}, {month:11, price:17}, {month:12, price:7}] }
 				];
 
-				this.$http.get('/currency/m2')
+				this.$http.get('/currency')
 				.then((r) => {
 					console.log(r.data.result )
 					this.dataset = r.data.result

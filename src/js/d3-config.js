@@ -61,7 +61,7 @@ export default {
 	},
 	getLine : (d3, conf ) => {
 		let lineDefault = {
-			margin : { top : 10, right : 10, bottom : 20, left : 20 }
+			margin : { top : 10, right : 20, bottom : 20, left : 30 }
 		};
 		return getDefault(d3, lineDefault, conf);
 	},
