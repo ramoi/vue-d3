@@ -20,15 +20,19 @@
 				<d3-circle id='financeDtl' :source='financeDtl' title='금융성채무' :width=200 :height=200  :legend='{isShow: false}' :conf='{name:"d",value:"val",animate:true }'></d3-circle>
 			</div>
 		</div>
+
+		<loader :isShow='isShowLoading'></loader>
 	</div>
 </template>
 
 <script>
+	import toobuk from './Toobuk'
 	import circle from './d3/circle.vue'
 	import bar from './d3/bar.vue'
 
 	export default {
 		name : 'currency',
+		extends : toobuk,
 		components : {
 			'd3-circle' : circle,
 			'd3-bar' : bar,
@@ -47,12 +51,16 @@
 			}
 		},
 		mounted() {
+			this.showLoading()
+
 			this.$http.get('/debt')
 			.then((r) => {
 				console.log(r.data.result )
 				this.m2 = r.data.result.date
 				this.debtCp = r.data.result.debtCp
 				this.yearList  = r.data.result.date.map( e => e.YEAR )
+
+				this.hideLoading()
 			})
 		},
 		methods : {

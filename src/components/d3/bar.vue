@@ -1,5 +1,5 @@
 <template>
-	<div class="chart bar">
+	<div class="d3-chart bar">
 		<h2 v-if='title'>{{title}}</h2>
 		<!-- <svg :id='id' :width='width' :height='height'></svg> -->
 	</div>
@@ -8,50 +8,25 @@
 <script type="text/javascript">
 	import eb from './event-bus.vue';
 	import * as d3 from 'd3';
+	import shape from './shape'
 	import chart from '../../js/d3-config.js';
 	import legend from '../../js/d3-legend.js';
 	import util from '../../js/d3-util.js';
 
 	export default {
+		extends : shape,
 		props : {
 			svg : { type : String },
-			id : { type : String, required : true},
-			source : undefined, 
-			title : { type : String}, 
-			width : { type : Number, required : true },
-			height: { type : Number, required : true },
 			animate : { type : Boolean, default : false },
-			name : { type : String, default : 'name'},
-			value : { type : String, default : 'value'},
 			legend : { type : Object, default : function() { return { isShow: true }; } },
 			onlyData : { type : Boolean, default : false },
-			conf : { type : Object },
 			xConf : { type : Object },
 			yConf : { type : Object }
 		},
 		methods : {
-			clear() {
-				if( !this.svgElement ) {
-					let svg = !!this.svg ? d3.select('#' + this.svg) : d3.select(this.$el).append('svg').attr('width', this.width).attr('height', this.height);
-					console.log(`svg clear.....id:: ${this.id}..,`, svg.empty());
-					this.svgElement = svg.append('g').attr('id', this.id).attr('class', 'chart')
-				} else {
-					this.svgElement.select(this.id).selectAll('*').remove();
-				}
+			getConf() {
+				return chart.getBar(d3, this.conf);
 			}
-		},
-		data() {
-			return {
-				configure : undefined,
-				svgElement: undefined
-			}
-		},
-		created() {
-			eb.$on('setData', (source) => {
-				this.setSource( source );
-			});
-
-			this.configure = chart.getBar(d3, this.conf);
 		},
 		watch : {
 			source : function( s ) {
@@ -59,20 +34,17 @@
 				const $this = this;
 				$this.clear();
 
-				const width = $this.width - ($this.configure.margin.left + $this.configure.margin.right);
-				//const height = $this.height - ($this.configure.margin.top + $this.configure.margin.bottom);
-				const height = $this.height - ($this.configure.margin.bottom);
+				let width  = this.dvc.width(this.configure.margin) ;
+				let height = this.dvc.height(this.configure.margin) ;
 
 				let min = d3.min($this.source, d => d[$this.configure.y] );
 				let max = d3.max($this.source, d => d[$this.configure.y] );
 				const interval = (max - min) * 0.1;
 
-				console.log(`min=${min}, max=${max}`);
 				min = min - interval , max = max + interval;
-				console.log(`min=${min}, max=${max}`);
 
 				this.svgElement
-				.attr('transform', `translate(${$this.configure.margin.left}, 0)`);
+				.attr('transform', 'translate(' + $this.dvc.length($this.configure.margin.left) + ',' +  $this.dvc.length($this.configure.margin.top) +' )');
 
 				const chart = $this.svgElement.append('g').attr('class', 'barGroup')
 				//.attr('transform', `translate(${$this.configure.margin.left}, ${$this.configure.margin.top})`);
@@ -204,12 +176,12 @@
 				// .attr('text-anchor', 'middle')
 				// .text('Most loved programming languages in 2018')
 
-				$this.svgElement.append('text')
-				.attr('class', 'source')
-				.attr('x', width)
-				.attr('y', height + 40 )
-				.attr('text-anchor', 'end')
-				.text('Source: Stack Overflow, 2018')
+				// $this.svgElement.append('text')
+				// .attr('class', 'source')
+				// .attr('x', width)
+				// .attr('y', height + 40 )
+				// .attr('text-anchor', 'end')
+				// .text('Source: Stack Overflow, 2018')
 			}
 		}
 	} 

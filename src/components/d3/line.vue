@@ -1,57 +1,35 @@
 <template>
-	<div class='chart line'>
+	<div class='d3-chart'>
 		<h2 v-if='title'>{{title}}</h2>
 		<!-- <svg :id='id' :width='width' :height='height'></svg> -->
 	</div>
 </template>
 
 <script type='text/javascript'>
-	import eb from './event-bus.vue';
-	import * as d3 from 'd3';
-	import chart from '../../js/d3-config.js';
-	import legend from '../../js/d3-legend.js';
-	import util from '../../js/d3-util.js';
+	import eb from './event-bus.vue'
+	import * as d3 from 'd3'
+	import shape from './shape'
+	import chart from '../../js/d3-config.js'
+	import legend from '../../js/d3-legend.js'
+	import util from '../../js/d3-util.js'
 
 	export default {
+		extends : shape,
 		props : {
 			svg : { type : String },
-			id : { type : String, required : true},
-			source : undefined, 
-			title : { type : String}, 
-			width : { type : Number, required : true },
-			height: { type : Number, required : true },
 			animate : { type : Boolean, default : false },
-			name : { type : String, default : 'name'},
-			value : { type : String, default : 'value'},
 			legend : { type : Object, default : function() { return { isShow: true }; } },
 			onlyData : { type : Boolean, default : false },
-			conf : { type : Object },
 			xConf : { type : Object },
 			yConf : { type : Object }
 		},
-		created() {
-			eb.$on('setData', (source) => {
-				this.setSource( source );
-			});
-
-			this.configure = chart.getLine(d3, this.conf);
-
-		},
-		mounted() {
-			let svg = !!this.svg ? d3.select('#' + this.svg) : d3.select(this.$el).append('svg').attr('width', this.width).attr('height', this.height);
-			this.svgElement = svg.append('g').attr('id', this.id).attr('class', 'chart')
-		},
 		data() {
 			return {
-				configure : undefined,
-				svgElement: undefined,
 				lgc : undefined
 			}
 		},
 		methods : {
-			clear() {
-				this.svgElement.selectAll('*').remove();
-			}
+			getConf() { return chart.getLine(d3, this.conf) }
 		},
 		watch : {
 			source : function(  ) {
@@ -139,11 +117,7 @@
 							return $this.configure.y
 						}
 					} : {
-						xDomain : function() {
-							return $this.source[0].data.map( d => d[$this.configure.x] )
-						},
-						range : function( ) {
-							let r = []
+						xDomain : function() {return $this.source[0].data.map( d => d[$this.configure.x] ) }, range : function( ) {let r = []
 							$this.source.forEach( s => {
 								s.data.forEach( row => getMinMax(r, row, $this.configure.y) )
 							})
@@ -167,17 +141,24 @@
 					$this.clear();
 
 					//var margin = {left: 20, top: 10, right: 10, bottom: 20};
-					var width  = $this.width - $this.configure.margin.left - $this.configure.margin.right;
-					var height = $this.height - $this.configure.margin.top - $this.configure.margin.bottom;
-					var svgG = $this.svgElement.append('g').attr('class', 'lineGroup')
-					.attr('transform', 'translate(' + $this.configure.margin.left + ',' + $this.configure.margin.top + ')');
+					const margin = this.configure.margin
+					const width  = this.dvc.width(margin) ;
+					const height = this.dvc.height(margin) ;
 
-					var xScale = d3.scalePoint()//scaleBand() scaleOrdinal
+					console.log('width=', width, 'height=',height)
+
+					let svgG = $this.svgElement.append('g').attr('class', 'lineGroup')
+					.attr('transform', 'translate(' + $this.dvc.length(margin.left) + ',' + $this.dvc.length(margin.top) + ')');
+
+					console.log('left=',$this.dvc.length(margin.left) , 'right=',  $this.dvc.length(margin.right))
+					console.log('top=',$this.dvc.length(margin.top) , 'bottom=',  $this.dvc.length(margin.bottom))
+
+					let xScale = d3.scalePoint()//scaleBand() scaleOrdinal
 				    //.domain(d3.extent(this.source[0], d => d[$this.configure.x]))
 				    .domain( $this.lgc.xDomain() )
 						.range([0, width])
 
-				    var yScale = d3.scaleLinear()
+				    let yScale = d3.scaleLinear()
 				    .domain( $this.lgc.range() )
 				    .nice()
 				    .range([height, 0]);

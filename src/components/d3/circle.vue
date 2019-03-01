@@ -1,5 +1,5 @@
 <template>
-	<div class="chart circle">
+	<div class="d3-chart">
 		<h2 v-if='title'>{{title}}</h2>
 		<svg :id='id' :width='width' :height='height'></svg>
 	</div>
