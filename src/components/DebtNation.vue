@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<div>참고 사이트: <a href='http://www.index.go.kr/potal/main/EachDtlPageDetail.do?idx_cd=1106' target='_new'>http://www.index.go.kr/potal/main/EachDtlPageDetail.do?idx_cd=1106</a></div>
 		<div>
 			<d3-bar id='m2' :source='m2' title='국가채무비율(GDP 대비)' :width=1000 :height=600 :conf='{x:"YEAR", y:"DEBT_RATIO", xName : "연도", yName: "GDP 대비 국가채무 비율(%)"}'></d3-bar>
 		</div>

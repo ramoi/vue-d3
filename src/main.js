@@ -4,7 +4,8 @@ import axios from 'axios'
 
 import Main from './components/Main'
 import Currency from './components/Currency'
-import Debt from './components/Debt'
+import DebtNation from './components/DebtNation'
+import DebtFamily from './components/DebtFamily'
 import House from './components/House'
 import BootstrapVue from 'bootstrap-vue'
 
@@ -20,10 +21,11 @@ const router = new VueRouter({
   mode: 'history',
   base: __dirname,
   routes: [
-    { path: '/', component: Main },
-    { path: '/currency', component: Currency },
-    { path: '/debt', component: Debt },
+    { path: '/', component: Currency },
+    { path: '/debt/nation', component: DebtNation },
+    { path: '/debt/family', component: DebtFamily },
     { path: '/house', component: House },
+    { path: '/main', component: Main },
   ]
 })
 
@@ -78,10 +80,11 @@ new Vue({
 
     <b-collapse is-nav id="nav_collapse">
       <b-navbar-nav>
-        <b-nav-item><router-link to="/" class="nav-link" active-class="active">소개</router-link></b-nav-item>
-        <b-nav-item><router-link to="/currency" class="nav-link" active-class="active">통화량</router-link></b-nav-item>
-        <b-nav-item><router-link to="/debt" class="nav-link" active-class="active">부채</router-link></b-nav-item>
+        <b-nav-item><router-link to="/" class="nav-link" active-class="active">통화량</router-link></b-nav-item>
+        <b-nav-item><router-link to="/debt/nation" class="nav-link" active-class="active">국가채무</router-link></b-nav-item>
+        <b-nav-item><router-link to="/debt/family" class="nav-link" active-class="active">가계부채</router-link></b-nav-item>
         <b-nav-item><router-link to="/house" class="nav-link" active-class="active">주택</router-link></b-nav-item>
+        <b-nav-item right><router-link to="/main" class="nav-link" active-class="active">소개</router-link></b-nav-item>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
@@ -95,3 +98,10 @@ new Vue({
 `
         // <li><router-link to="/">Main</router-link></li>
 }).$mount('#app')
+
+        // <b-nav-item-dropdown text="Lang" right>
+        //   <b-dropdown-item href="#">EN</b-dropdown-item>
+        //   <b-dropdown-item href="#">ES</b-dropdown-item>
+        //   <b-dropdown-item href="#">RU</b-dropdown-item>
+        //   <b-dropdown-item href="#">FA</b-dropdown-item>
+        // </b-nav-item-dropdown>

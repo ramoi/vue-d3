@@ -1,14 +1,22 @@
 <template>
 	<div>
-		<d3-line id='tradeChangeRate' :source='tradeChangeRate' title='집가격 증감율 추이' :width=700 :height=700 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["전국","수도권", "서울", "강남", "강북" ], margin:{top:10, right:10, bottom:40, left:50 } }'></d3-line>
-		<d3-line id='charterChangeRate' :source='charterChangeRate' title='전세가격 증감율 추이' :width=700 :height=700 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["전국","수도권", "서울", "강남", "강북" ], margin:{top:10, right:10, bottom:40, left:50 } }'></d3-line>
-		<div>
-			<select v-model='selectLoc'>
-				<option value=''>선택</option>
-				<option v-for='loc in locList' :value='loc'>{{loc}}</option>
-			</select>
+		<div>참고 사이트
+			<ul>
+				<li><a href='http://www.index.go.kr/potal/main/EachDtlPageDetail.do?idx_cd=1240' target='_new'>http://www.index.go.kr/potal/main/EachDtlPageDetail.do?idx_cd=1240</a></li>
+				<li><a href='http://www.index.go.kr/potal/main/EachDtlPageDetail.do?idx_cd=1241' target='_new'>http://www.index.go.kr/potal/main/EachDtlPageDetail.do?idx_cd=1241</a></li>
+			</ul>
 		</div>
-		<d3-line id='compareRate' :source='compareRate' :title='compareTitle' :width=700 :height=700 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["집값","전세"], margin:{top:10, right:10, bottom:40, left:50 } }'></d3-line>
+		<div>
+			<d3-line id='tradeChangeRate' :source='tradeChangeRate' title='집가격 증감율 추이' :width=700 :height=700 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["전국","수도권", "서울", "강남", "강북" ], margin:{top:10, right:10, bottom:40, left:50 } }'></d3-line>
+			<d3-line id='charterChangeRate' :source='charterChangeRate' title='전세가격 증감율 추이' :width=700 :height=700 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["전국","수도권", "서울", "강남", "강북" ], margin:{top:10, right:10, bottom:40, left:50 } }'></d3-line>
+			<div>
+				<select v-model='selectLoc'>
+					<option value=''>선택</option>
+					<option v-for='loc in locList' :value='loc'>{{loc}}</option>
+				</select>
+			</div>
+			<d3-line id='compareRate' :source='compareRate' :title='compareTitle' :width=700 :height=700 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["집값","전세"], margin:{top:10, right:10, bottom:40, left:50 } }'></d3-line>
+		</div>
 
 		<loader :isShow='isShowLoading'></loader>
 	</div>
