@@ -2,6 +2,7 @@
   <div>
     <div><button @click='getData'>데이타 가져오기</button></div>
     <d3-circle id='dept' title='통화량' :width=300 :height=300  :source='dataset' :legend='{isShow: false}' :conf='{name:"name",value:"value",animate:true }'></d3-circle>
+    <div>참고 사이트 : <a href='http://blog.naver.com/sol9501/220199577721' target='_new'>http://blog.naver.com/sol9501/220199577721</a></div>
   </div>
 </template>
 

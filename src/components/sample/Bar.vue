@@ -3,7 +3,7 @@
     <!-- <div><button @click='getData'>데이타 가져오기</button></div> -->
     <d3-bar id='bar1' title='Most loved programming languages' :source='barData1' :width=1000 :height=600 :conf='{series:"language", x:"year", y:"value"}'></d3-bar>
     <d3-bar id='bar2' title='Most loved programming languages' :source='barData2' :width=1000 :height=600 :conf='{x:"language", y:"value"}'></d3-bar>
-    <div>참고 사이트 : https://blog.risingstack.com/d3-js-tutorial-bar-charts-with-javascript/</div>
+    <div>참고 사이트 : <a href='https://blog.risingstack.com/d3-js-tutorial-bar-charts-with-javascript/' target='_new'>https://blog.risingstack.com/d3-js-tutorial-bar-charts-with-javascript/</a></div>
   </div>
 </template>
 

@@ -7,8 +7,12 @@ import line from './components/sample/Line'
 import bar from './components/sample/Bar'
 import circle from './components/sample/Circle'
 import examp from './components/sample/Examples'
+import BootstrapVue from 'bootstrap-vue'
 
-//import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+Vue.use(BootstrapVue)
 
 const router = new VueRouter({
   mode: 'history',
@@ -25,25 +29,25 @@ const router = new VueRouter({
 new Vue({
   router,
   template: `
-  <div>
-    <nav class="navbar navbar-toggleable-md navbar-light bg-success navbar-inverse">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="/">시작</a>
+<div>
+  <b-navbar toggleable="lg" type="dark" variant="info">
+    <b-navbar-brand href="/">Sample</b-navbar-brand>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item"><router-link to="/line" class="nav-link" active-class="active">라인</router-link></li>
-                <li class="nav-item"><router-link to="/bar"  class="nav-link" active-class="active">바</router-link></li>
-                <li class="nav-item"><router-link to="/circle"  class="nav-link" active-class="active">원</router-link></li>
-            </ul>
-        </div>        
-    </nav>    
-    <div class="container pt-3 pb-3">
+    <b-navbar-toggle target="nav_collapse" />
+
+    <b-collapse is-nav id="nav_collapse">
+      <b-navbar-nav>
+          <b-nav-item><router-link to="/line" class="nav-link" active-class="active">라인</router-link></b-nav-item>
+          <b-nav-item><router-link to="/bar"  class="nav-link" active-class="active">바</router-link></b-nav-item>
+          <b-nav-item><router-link to="/circle"  class="nav-link" active-class="active">원</router-link></b-nav-item>
+      </b-navbar-nav>
+    </b-collapse>
+  </b-navbar>
+
+  <div class="container pt-3 pb-3">
       <router-view></router-view> 
-    </div>
   </div>
+</div>
   `
 //        <li><router-link to="/">Main</router-link></li>
 }).$mount('#app')
