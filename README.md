@@ -1,6 +1,8 @@
 # vue-d3
-vuejs를 공부하면서 어떤 주제로 이것을 활용할까 생각을 해보다가 d3js를 선택했습니다. 그런데 작업을 하면서 가장 힘들었던 부분이 d3였습니다.   
-개발자로 살아오면서 가장 힘들게 느껴지는 부분이 html인데(퍼블리셔 분들 사랑합니다.ㅋㅋ), 원하는데로 모양이 안나오니 삽질만 하게 되더군요.  
+python을 공부하고, 그것을 또 익히기 위해서 웹크롤링을 도와주는 도우미 패키지를 만들었습니다.  
+https://github.com/ramoi/toobuk  
+그런데, 화면에서 좀 보여주면 좋을 것 같다는 생각이 들어, vuejs와 d3js를 이용해서 챠트를 그려주는 컴포넌트를 만들었는데요.  
+개발자로 살아오면서 가장 힘들게 느껴지는 부분이 html인데, d3js를 컴포넌트화하려다 보니 여러가지로 힘들더군요. 원하는데로 모양이 안나오니 삽질만 했습니다.  
 생각해보면, 아직 미진한 부분이 많습니다. complex라든지, y축을 오른쪽에 설정하는 것 등등  
 모두 vuejs 보다는 d3에 문제되는 부분이라 공부를 하면서 그때, 그때 수정하려 합니다.  
 혹시라도 실무에서 적용하시려는 분이 있다면, 사과의 말씀을 드립니다. 그 정도로 훌륭하지 않습니다.  
@@ -37,6 +39,7 @@ src/components/sample 디렉토리에서 샘플 소스를 확인할 수 있습�
 	d3@5.9.0
 	axios@0.18.0
 	webpack@3.12.0
+	bootstrap@4.3.1
 
 ### 2. 설치 
 우선 node와 vue-cli가 설치되었다는 가정하에 진행하겠습니다. 
@@ -51,6 +54,7 @@ src/components/sample 디렉토리에서 샘플 소스를 확인할 수 있습�
 	yarn add vue-router --dev
 	yarn add d3 --dev
 	yarn add axios --dev
+	yarn add bootstrap --dev
 
 chart 라는 디렉토리가 생성이 되며, 해당 디렉토리로 소스를 복사합니다.
 src 디렉토리와 index.html이 chart 디렉토리로 복사되면 됩니다.
@@ -139,25 +143,19 @@ src 디렉토리와 index.html이 chart 디렉토리로 복사되면 됩니다.
 아직은 여러가지로 부족합니다. 이놈을 실제 업무에 적용하기에는 아직 여러가지로 구현이 안된 기능이 많아요.  
 하지만 조금씩 수정하며 보완해 나갔으면 하는데, 시간이 문제네요.  
 vuejs를 처음 공부하시는 분들에게 조금이나마 도움이 되었으면 합니다.  
-  
-위 데이타를 만들기 위해서 데이타를 만들어야 했는데요.  
-아래 python 모듈과 연동할 수 있습니다. 사실, python을 공부하다가 여기까지 왔네요.  
-https://github.com/ramoi/toobuk  
-  
+
 장고에서 사용해 봤습니다.  
 https://github.com/ramoi/toobuk_vue  
 
 ## 참고 사이트 
 https://vuejs.org/  
 https://router.vuejs.org/  
+https://bootstrap-vue.js.org/
 
 https://d3js.org/  
 http://bl.ocks.org/emmasaunders/c25a147970def2b02d8c7c2719dc7502
 
-### 메뉴 만들기 참고 사이트 
-https://medium.com/@disjfa/creating-navigation-using-vue-router-59d0b12ab75f  
-https://medium.com/@BjornKrols/integrating-and-customising-bootstrap-4-in-vue-js-cbc29ba7688e  
-
 ### 챠트 
 https://codelib.tistory.com/10  
 https://blog.risingstack.com/d3-js-tutorial-bar-charts-with-javascript  
+http://blog.naver.com/sol9501/220199577721
