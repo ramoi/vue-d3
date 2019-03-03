@@ -4,8 +4,16 @@
 <script type='text/javascript'>
 	import * as d3 from 'd3'
 	import $ from 'jquery'
+	import BBadge from 'bootstrap-vue/es/components/badge/badge'
+	import BCard from 'bootstrap-vue/es/components/card/card'
+	import BFormSelect from 'bootstrap-vue/es/components/form-select/form-select'
 
 	export default {
+		components : {
+			'b-form-select': BFormSelect,
+			'b-badge': BBadge,
+			'b-card': BCard
+		},
 		props : {
 			id : { type : String, required : true},
 			source : undefined, 

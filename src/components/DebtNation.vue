@@ -1,26 +1,27 @@
 <template>
 	<div>
-		<div>참고 사이트: <a href='http://www.index.go.kr/potal/main/EachDtlPageDetail.do?idx_cd=1106' target='_new'>http://www.index.go.kr/potal/main/EachDtlPageDetail.do?idx_cd=1106</a></div>
-		<div>
-			<d3-bar id='m2' :source='m2' title='국가채무비율(GDP 대비)' :width=1000 :height=600 :conf='{x:"YEAR", y:"DEBT_RATIO", xName : "연도", yName: "GDP 대비 국가채무 비율(%)"}'></d3-bar>
-		</div>
-		<div>
-			<div>
-				<select v-model='selectYear' @change='getDeptCp'>
-					<option value=''>선택</option>
-					<option v-for='year in yearList' :value='year'>{{year}}</option>
-				</select>
-			</div>
-			<div>
-				<d3-circle id='dc' :source='dc' title='부채구성 정부부분' :width=200 :height=200  :legend='{isShow: false}' :conf='{name:"d",value:"val",animate:true ,colors:["red", "blue"]}'></d3-circle>
-				<d3-circle id='dcDtl' :source='dcDtl' title='중앙정부 부채구성' :width=200 :height=200  :legend='{isShow: false}' :conf='{name:"d",value:"val",animate:true }'></d3-circle>
-			</div>
-			<div>
-				<d3-circle id='dc2' :source='dc2' title='부채구성 채무부문' :width=200 :height=200  :legend='{isShow: false}' :conf='{name:"d",value:"val",animate:true ,colors:["red", "blue"]}'></d3-circle>
-				<d3-circle id='legalDtl' :source='legalDtl' title='적자성채무' :width=200 :height=200  :legend='{isShow: false}' :conf='{name:"d",value:"val",animate:true }'></d3-circle>
-				<d3-circle id='financeDtl' :source='financeDtl' title='금융성채무' :width=200 :height=200  :legend='{isShow: false}' :conf='{name:"d",value:"val",animate:true }'></d3-circle>
-			</div>
-		</div>
+		<b-card title="국가 채무 추이">
+			<b-card-text>
+				연도별 국가 채무 추이를 보여줍니다.
+			</b-card-text>
+
+			<a href='http://www.index.go.kr/potal/main/EachDtlPageDetail.do?idx_cd=1106' target='_new'><b-badge variant="primary">e-나라지표-국가채무 추이</b-badge></a>
+		</b-card>
+		<b-card title='국가채무비율(GDP 대비)' >
+			<d3-bar id='m2' :source='m2' :width=1000 :height=600 :conf='{x:"YEAR", y:"DEBT_RATIO", xName : "연도", yName: "GDP 대비 국가채무 비율(%)"}'></d3-bar>
+		</b-card>
+		<b-card>
+			<b-form-select v-model="selectYear" :options="yearList" @change='getDeptCp'/>
+		</b-card>
+		<b-card>
+			<d3-circle id='dc' :source='dc' title='부채구성 정부부분' :width=200 :height=200  :legend='{isShow: false}' :conf='{name:"d",value:"val",animate:true ,colors:["red", "blue"]}'></d3-circle>
+			<d3-circle id='dcDtl' :source='dcDtl' title='중앙정부 부채구성' :width=200 :height=200  :legend='{isShow: false}' :conf='{name:"d",value:"val",animate:true }'></d3-circle>
+		</b-card>
+		<b-card>
+			<d3-circle id='dc2' :source='dc2' title='부채구성 채무부문' :width=200 :height=200  :legend='{isShow: false}' :conf='{name:"d",value:"val",animate:true ,colors:["red", "blue"]}'></d3-circle>
+			<d3-circle id='legalDtl' :source='legalDtl' title='적자성채무' :width=200 :height=200  :legend='{isShow: false}' :conf='{name:"d",value:"val",animate:true }'></d3-circle>
+			<d3-circle id='financeDtl' :source='financeDtl' title='금융성채무' :width=200 :height=200  :legend='{isShow: false}' :conf='{name:"d",value:"val",animate:true }'></d3-circle>
+		</b-card>
 
 		<loader :isShow='isShowLoading'></loader>
 	</div>
@@ -40,7 +41,7 @@
 		},
 		data() {
 			return {
-				yearList: [],
+				yearList: [{value:'', text:'선택'}],
 				selectYear : '',
 				m2 : undefined,
 				debtCp : undefined,
@@ -59,7 +60,7 @@
 				console.log(r.data.result )
 				this.m2 = r.data.result.date
 				this.debtCp = r.data.result.debtCp
-				this.yearList  = r.data.result.date.map( e => e.YEAR )
+				this.yearList = this.yearList.concat( r.data.result.date.map( e => { return { value : e.YEAR, text : e.YEAR } } ) )
 
 				this.hideLoading()
 			})

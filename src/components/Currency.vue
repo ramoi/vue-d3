@@ -1,11 +1,17 @@
 <template>
 	<div>
-		<div>참고 사이트: <a href='http://www.index.go.kr/potal/main/EachDtlPageDetail.do?idx_cd=1072' target='_new'>http://www.index.go.kr/potal/main/EachDtlPageDetail.do?idx_cd=1072</a></div>		
-		<div>
+		<b-card title="통화량 추이">
+			<b-card-text>
+				연도별 통화량 증감율을 보여줍니다.
+			</b-card-text>
+
+			<a href='http://www.index.go.kr/potal/main/EachDtlPageDetail.do?idx_cd=1072' target='_new'><b-badge variant="primary">e-나라지표-통화량 추이</b-badge></a>
+		</b-card>
+		<b-card>
 			<d3-bar id='m2' :source='dataset1' title='M2 통화량 증가율 국제비교' :width=1000 :height=600 :conf='{x:"NAME", y:"M2_INC_RATE", xName : "국가", yName: "통화량 증가율(M2)"}'></d3-bar>
 
 			<d3-line id='currencyChangeRate' :source='dataset2' title='통화량 추이(평잔 증가율(%))' :width=700 :height=700 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["본원통화","M1", "M2", "Lf" ], margin:{top:10, right:10, bottom:40, left:50 } }'></d3-line>
-		</div>
+		</b-card>
 		
 		<loader :isShow='isShowLoading'></loader>
 	</div>

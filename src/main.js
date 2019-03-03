@@ -21,10 +21,10 @@ const router = new VueRouter({
   mode: 'history',
   base: __dirname,
   routes: [
-    { path: '/', component: Currency },
+    { path: '/', component: House },
+    { path: '/currency', component: Currency },
     { path: '/debt/nation', component: DebtNation },
     { path: '/debt/family', component: DebtFamily },
-    { path: '/house', component: House },
     { path: '/main', component: Main },
   ]
 })
@@ -80,10 +80,10 @@ new Vue({
 
     <b-collapse is-nav id="nav_collapse">
       <b-navbar-nav>
-        <b-nav-item><router-link to="/" class="nav-link" active-class="active">통화량</router-link></b-nav-item>
+        <b-nav-item><router-link to="/" class="nav-link" active-class="active">주택</router-link></b-nav-item>
+        <b-nav-item><router-link to="/currency" class="nav-link" active-class="active">통화량</router-link></b-nav-item>
         <b-nav-item><router-link to="/debt/nation" class="nav-link" active-class="active">국가채무</router-link></b-nav-item>
         <b-nav-item><router-link to="/debt/family" class="nav-link" active-class="active">가계부채</router-link></b-nav-item>
-        <b-nav-item><router-link to="/house" class="nav-link" active-class="active">주택</router-link></b-nav-item>
         <b-nav-item right><router-link to="/main" class="nav-link" active-class="active">소개</router-link></b-nav-item>
       </b-navbar-nav>
     </b-collapse>

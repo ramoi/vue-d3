@@ -1,9 +1,16 @@
 <template>
 	<div>
-		<div>참고 사이트: <a href='http://www.index.go.kr/potal/main/EachDtlPageDetail.do?idx_cd=1072' target='_new'>http://www.index.go.kr/potal/main/EachDtlPageDetail.do?idx_cd=1072</a></div>
-		<div>
-			<d3-line id='currencyChangeRate' :source='dataset' title='가계신용동향(전년 동기 증감율)' :width=700 :height=700 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["가계신용","가계대출", "판매신용" ], margin:{top:10, right:10, bottom:40, left:50 } }'></d3-line>
-		</div>
+		<b-card title="가계 신용 동향">
+			<b-card-text>
+				연도별  가계 신용 동향을 보여줍니다. 해당 데이타는 전년 동기 증감율입니다.
+			</b-card-text>
+
+			<a href='http://www.index.go.kr/potal/main/EachDtlPageDetail.do?idx_cd=1076' target='_new'><b-badge variant="primary">e-나라지표-가계 신용 동향</b-badge></a>
+		</b-card>
+
+		<b-card title='가계신용동향(전년 동기 증감율)'>
+			<d3-line id='currencyChangeRate' :source='dataset' :width=700 :height=700 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["가계신용","가계대출", "판매신용" ], margin:{top:10, right:10, bottom:40, left:50 } }'></d3-line>
+		</b-card>
 
 		<loader :isShow='isShowLoading'></loader>
 	</div>

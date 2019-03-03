@@ -1,21 +1,33 @@
 <template>
 	<div>
-		<div>참고 사이트
-			<ul>
-				<li><a href='http://www.index.go.kr/potal/main/EachDtlPageDetail.do?idx_cd=1240' target='_new'>http://www.index.go.kr/potal/main/EachDtlPageDetail.do?idx_cd=1240</a></li>
-				<li><a href='http://www.index.go.kr/potal/main/EachDtlPageDetail.do?idx_cd=1241' target='_new'>http://www.index.go.kr/potal/main/EachDtlPageDetail.do?idx_cd=1241</a></li>
-			</ul>
-		</div>
-		<div>
+		<b-card title="주택가격 및 전세 동향 추이">
+			<b-card-text>
+				주택가격 및 전세 가격 동향 추이를 지역별로 대비시켜 보여줍니다.
+			</b-card-text>
+
+			<a href='http://www.index.go.kr/potal/main/EachDtlPageDetail.do?idx_cd=1240' target='_new'><b-badge variant="primary">e-나라지표-주택매매가격 동향</b-badge></a>
+			<a href='http://www.index.go.kr/potal/main/EachDtlPageDetail.do?idx_cd=1241' target='_new'><b-badge variant="primary">e-나라지표-주택전세가격 동향</b-badge></a>	
+		</b-card>
+		<b-card>
 			<d3-line id='tradeChangeRate' :source='tradeChangeRate' title='집가격 증감율 추이' :width=700 :height=700 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["전국","수도권", "서울", "강남", "강북" ], margin:{top:10, right:10, bottom:40, left:50 } }'></d3-line>
 			<d3-line id='charterChangeRate' :source='charterChangeRate' title='전세가격 증감율 추이' :width=700 :height=700 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["전국","수도권", "서울", "강남", "강북" ], margin:{top:10, right:10, bottom:40, left:50 } }'></d3-line>
-			<div>
-				<select v-model='selectLoc'>
+		</b-card>
+			
+		<div>
+			<b-card title="지역별 주택가격 및 전세 동향 추이 대비">
+				<b-card-text>
+					지역을 선택하시면 주택 가격 및 전세가격 추이를 확인할 수 있습니다.
+				</b-card-text>
+
+				<!-- <select v-model='selectLoc'>
 					<option value=''>선택</option>
 					<option v-for='loc in locList' :value='loc'>{{loc}}</option>
-				</select>
-			</div>
-			<d3-line id='compareRate' :source='compareRate' :title='compareTitle' :width=700 :height=700 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["집값","전세"], margin:{top:10, right:10, bottom:40, left:50 } }'></d3-line>
+				</select> -->
+				<b-form-select v-model="selectLoc" :options="locList" />
+			</b-card>
+			<b-card title='지역별 집값 및 전세값 증감율 추이' >
+				<d3-line id='compareRate' :source='compareRate' :width=700 :height=700 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["집값","전세"], margin:{top:10, right:10, bottom:40, left:50 } }'></d3-line>
+			</b-card>
 		</div>
 
 		<loader :isShow='isShowLoading'></loader>
@@ -34,14 +46,11 @@
 		},
 		data() {
 			return {
-				locList: [],
+				locList: [{value:'', text:'선택'}],
 				selectLoc : '',
-				dateList: [],
-				selectDate : '',
 				deptCp : undefined,
 				tradeChangeRate: undefined,
-				charterChangeRate: undefined,
-				compareTitle : '증감율 추이'
+				charterChangeRate: undefined
 			}
 		},
 		mounted() {
@@ -50,8 +59,8 @@
 			this.$http.get('/house/trade')
 				.then((r) => {
 					console.log( r.data );
-					this.locList = r.data.result.loc.map( e => e.LOC )
-					this.dateList = r.data.result.date.map( e => e.DATE )
+					//this.locList = r.data.result.loc.map( e => e.LOC )
+					this.locList = this.locList.concat( r.data.result.loc.map( e => { return { value : e.LOC, text : e.LOC } } ) )
 					this.tradeChangeRate = r.data.result.changeRate
 
 					loading1 = true

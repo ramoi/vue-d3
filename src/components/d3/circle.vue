@@ -1,6 +1,6 @@
 <template>
 	<div class="d3-chart">
-		<h2 v-if='title'>{{title}}</h2>
+		<h4 v-if='title'>{{title}}</h4>
 		<svg :id='id' :width='width' :height='height'></svg>
 	</div>
 </template>
