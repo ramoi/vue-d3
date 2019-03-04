@@ -55,6 +55,15 @@
 					}
 
 					let setSeries = (y, svgG, data, getData, getSeriesName, xScale, yScale ) => {
+						d3.select('body')
+						.select('div.toolTip').remove();
+						
+						var tooltip = d3.select('body')
+						.append('div')
+						.attr('class', 'toolTip')
+						.style('display', 'none');
+
+
 						let pg = svgG.append('g')
 						.selectAll('g')
 						.data( data )
@@ -88,13 +97,6 @@
 							tooltip.style('top',  (d3.event.pageY-10)+'px');
 							tooltip.html(`${$this.configure.xName} : ${d[$this.configure.x]} <br/>${y} : ${d[y]}`);
 						});
-
-						d3.select('body')
-						.select('div.toolTip').remove();
-						var tooltip = d3.select('body')
-						.append('div')
-						.attr('class', 'toolTip')
-						.style('display', 'none');
 					}
 
 					return Array.isArray($this.configure.y) ? {
@@ -166,7 +168,7 @@
 					svgG.append('g')
 					.attr('class', 'grid')
 					.attr('transform', 'translate(0,' + height + ')')
-					.call(d3.axisBottom(xScale)//.ticks( 6 )
+					.call(d3.axisBottom(xScale).ticks( 6 )
 						//.tickSize(-height)
 					 );
 

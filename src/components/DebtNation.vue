@@ -2,7 +2,7 @@
 	<div>
 		<b-card title="국가 채무 추이">
 			<b-card-text>
-				연도별 국가 채무 추이를 보여줍니다.
+				연도별 국가 채무 추이를 보여줍니다. 아래 e-나라지표에서 데이타를 읽어왔습니다.
 			</b-card-text>
 
 			<a href='http://www.index.go.kr/potal/main/EachDtlPageDetail.do?idx_cd=1106' target='_new'><b-badge variant="primary">e-나라지표-국가채무 추이</b-badge></a>

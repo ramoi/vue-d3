@@ -2,7 +2,7 @@
 	<div>
 		<b-card title="가계 신용 동향">
 			<b-card-text>
-				연도별  가계 신용 동향을 보여줍니다. 해당 데이타는 전년 동기 증감율입니다.
+				연도별  가계 신용 동향을 보여줍니다. 해당 데이타는 전년 동기 증감율입니다. 아래 e-나라지표에서 데이타를 읽어왔습니다.
 			</b-card-text>
 
 			<a href='http://www.index.go.kr/potal/main/EachDtlPageDetail.do?idx_cd=1076' target='_new'><b-badge variant="primary">e-나라지표-가계 신용 동향</b-badge></a>

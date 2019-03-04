@@ -2,15 +2,15 @@
 	<div>
 		<b-card title="주택가격 및 전세 동향 추이">
 			<b-card-text>
-				주택가격 및 전세 가격 동향 추이를 지역별로 대비시켜 보여줍니다.
+				주택가격 및 전세 가격 동향 추이를 지역별로 대비시켜 보여줍니다. 아래 e-나라지표에서 데이타를 읽어왔습니다.
 			</b-card-text>
 
 			<a href='http://www.index.go.kr/potal/main/EachDtlPageDetail.do?idx_cd=1240' target='_new'><b-badge variant="primary">e-나라지표-주택매매가격 동향</b-badge></a>
 			<a href='http://www.index.go.kr/potal/main/EachDtlPageDetail.do?idx_cd=1241' target='_new'><b-badge variant="primary">e-나라지표-주택전세가격 동향</b-badge></a>	
 		</b-card>
 		<b-card>
-			<d3-line id='tradeChangeRate' :source='tradeChangeRate' title='집가격 증감율 추이' :width=700 :height=700 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["전국","수도권", "서울", "강남", "강북" ], margin:{top:10, right:10, bottom:40, left:50 } }'></d3-line>
-			<d3-line id='charterChangeRate' :source='charterChangeRate' title='전세가격 증감율 추이' :width=700 :height=700 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["전국","수도권", "서울", "강남", "강북" ], margin:{top:10, right:10, bottom:40, left:50 } }'></d3-line>
+			<d3-line id='tradeChangeRate' :source='tradeChangeRate' title='집가격 증감율 추이' :width=700 :height=700 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["전국","수도권", "서울", "강남", "강북" ], margin:{top:10, right:30, bottom:40, left:60 } }'></d3-line>
+			<d3-line id='charterChangeRate' :source='charterChangeRate' title='전세가격 증감율 추이' :width=700 :height=700 :conf='{xName:"년월", yName:"증감율(%)", x:"DATE", y:["전국","수도권", "서울", "강남", "강북" ], margin:{top:10, right:30, bottom:40, left:60 } }'></d3-line>
 		</b-card>
 			
 		<div>
@@ -85,7 +85,7 @@
 
 				const result = []
 				for( let i = 0, t = this.tradeChangeRate.length; i < t ; i++ ) {
-					result.push( { 'DATE': this.tradeChangeRate[i].DATE, '집값' : this.tradeChangeRate[i][this.selectLoc], '전세':this.charterChangeRate[i][this.selectLoc]} )
+					result.push( { 'DATE': this.tradeChangeRate[i].DATE, '집값' : this.tradeChangeRate[i][this.selectLoc], '전세':this.charterChangeRate[i+3][this.selectLoc]} )
 				}
 
 				return result
