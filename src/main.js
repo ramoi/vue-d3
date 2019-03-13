@@ -75,7 +75,7 @@ new Vue({
 `
 <div>
   <b-navbar toggleable="lg" type="dark" variant="info">
-    <b-navbar-brand href="/">뚜벅 뚜벅::못난 통계/b-navbar-brand>
+    <b-navbar-brand href="/">뚜벅 뚜벅, 통계</b-navbar-brand>
 
     <b-navbar-toggle target="nav_collapse" />
 
